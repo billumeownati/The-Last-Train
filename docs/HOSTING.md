@@ -18,7 +18,7 @@ You *could* put only the static client on Vercel and the server elsewhere, but i
 | **Your PC + Cloudflare tunnel** | free | only while your PC runs it | playtests with friends | https included, so microphones work. No account needed for a quick tunnel. |
 | **Render** (web service) | free tier | sleeps after ~15 min without traffic; ~30-60 s cold start | a shareable link that isn't tied to your PC | supports WebSockets and https. Rooms are lost when it sleeps or redeploys. |
 | **Railway / Koyeb / Fly.io** | small credit or a few $/month | yes | a more permanent home | free allowances change often. Check their current pricing page. |
-| **A cheap VPS** (Hetzner, DigitalOcean, Oracle's always-free VM) | $0-5/month | yes | the long-term setup | you manage Node, a reverse proxy and https yourself (Caddy makes that easy). |
+| **A cheap VPS** (Hetzner, DigitalOcean, **Oracle's Always Free VM**) | $0-5/month | yes | the long-term setup | you manage Node, a reverse proxy and https yourself (Caddy makes that easy). Step-by-step for Oracle below (Option 3). |
 
 Prices and free tiers change; confirm on each provider's page before committing.
 
@@ -26,7 +26,7 @@ Prices and free tiers change; confirm on each provider's page before committing.
 
 1. **Now, for playtests:** your PC + Cloudflare tunnel (below).
 2. **If friends want to play without you hosting:** deploy to Render (below).
-3. **If it takes off:** move to a small VPS, add a TURN server for voice, and consider persistence (see `ROADMAP.md`).
+3. **If it takes off:** move to a small VPS (Oracle's free 1 GB VM is enough: see Option 3), add a TURN server for voice, and consider persistence (see `ROADMAP.md`).
 
 ## Option 1: your PC with a Cloudflare tunnel
 
@@ -57,6 +57,141 @@ Things to know on a free tier:
 * **Rooms live in memory.** If the instance sleeps or you redeploy, every room is lost. Don't deploy in the middle of a game.
 * **Cold start:** the first visitor waits while it wakes. Open the link yourself a minute before everyone joins.
 * An active game keeps traffic flowing, so it should not sleep mid-game, but an idle lobby can.
+
+## Option 3: an Oracle Cloud "Always Free" VM (1 GB)
+
+A single room of six players made the server use about 140 MB of RAM in testing, so the 1 GB free machine is plenty to *run* it. The tight spots are **building** the client (use swap) and **https** (needed for voice).
+Commands below assume **Ubuntu** (22.04 or 24.04). Replace `YOUR-USER/the-last-train` with your repo.
+
+### 1. Create the VM
+
+* Shape: the free **AMD micro** (`VM.Standard.E2.1.Micro`, 1 GB). If your account can get an **Ampere A1 (ARM)** shape, it has far more room, but free capacity for it is often unavailable.
+* Image: Ubuntu. Add your SSH key. Note the **public IP**.
+* If you will use a domain with Caddy (step 6a): in the VM's subnet **Security List** (Networking → Virtual Cloud Networks → your VCN → subnet → Security Lists) add **Ingress Rules** for TCP **80** and **443** from `0.0.0.0/0`.
+  If you will use a Cloudflare tunnel (step 6b), you can skip this: the tunnel makes an outbound connection only.
+
+### 2. Install Node, git and swap
+
+```bash
+ssh ubuntu@YOUR_IP
+
+# Node 22 LTS + git
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs git
+
+# 2 GB swap so that `npm run build` doesn't run out of memory on 1 GB
+sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile
+sudo mkswap /swapfile && sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+free -h
+```
+
+### 3. Get the code and build it
+
+```bash
+git clone https://github.com/YOUR-USER/the-last-train.git
+cd the-last-train
+npm install --include=dev      # dev dependencies (Vite, TypeScript) are needed to build the client
+npm run build                  # writes client/dist
+```
+
+No GitHub repo? Build on your PC and copy it up instead: `npm run build` locally, then `scp -r . ubuntu@YOUR_IP:~/the-last-train` (skip `node_modules`; run `npm install --omit=dev` on the VM).
+
+### 4. Run it as a service
+
+Create `/etc/systemd/system/lasttrain.service` (use `sudo nano`):
+
+```ini
+[Unit]
+Description=The Last Train game server
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/the-last-train
+Environment=PORT=3000
+Environment=HOST=127.0.0.1
+ExecStart=/usr/bin/node node_modules/tsx/dist/cli.mjs server/src/index.ts
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+```
+
+`HOST=127.0.0.1` keeps the game port private: only Caddy or the tunnel on the same machine can reach it.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now lasttrain
+curl -s http://127.0.0.1:3000/healthz        # {"ok":true,"rooms":0}
+journalctl -u lasttrain -f                   # live logs (Ctrl+C to leave)
+```
+
+### 5. Check memory
+
+```bash
+free -h
+ps -o rss,cmd -C node          # RSS is in KB; expect roughly 70,000 to 150,000 per process
+```
+
+### 6. https (microphones need it): pick one
+
+**6a. A domain with Caddy** (automatic certificates, handles WebSockets for you).
+Point a hostname at the VM's public IP first (a free DuckDNS name works: create `yourname.duckdns.org` with your IP).
+
+```bash
+sudo apt-get install -y debian-keyring debian-archive-keyring apt-transport-https curl
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt-get update && sudo apt-get install -y caddy
+
+echo 'yourname.duckdns.org {
+    reverse_proxy 127.0.0.1:3000
+}' | sudo tee /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+```
+
+Oracle's Ubuntu images also block ports inside the VM, so open 80 and 443 there too (the cloud Security List from step 1 is not enough):
+
+```bash
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80  -j ACCEPT
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
+sudo netfilter-persistent save     # if missing: sudo apt-get install -y iptables-persistent
+```
+
+Then open `https://yourname.duckdns.org`.
+
+**6b. A Cloudflare tunnel** (no domain, no open ports).
+Install `cloudflared` from Cloudflare's downloads page for your CPU (amd64 for the micro shape, arm64 for Ampere), then:
+
+```bash
+cloudflared tunnel --url http://127.0.0.1:3000
+```
+
+It prints an `https://….trycloudflare.com` address. That quick tunnel changes every time and stops when you close the session. For a permanent address you need a (free) Cloudflare account with a domain on it and a *named* tunnel
+(follow Cloudflare's "Create a locally-managed tunnel" guide, then run it as a service).
+
+### 7. Updating
+
+```bash
+cd ~/the-last-train
+git pull
+npm install --include=dev
+npm run build
+sudo systemctl restart lasttrain
+```
+
+Restarting ends every game in progress (rooms live in memory), so update between sessions.
+
+### Things to know
+
+* **Keep it to one process.** Don't start a second copy for "more capacity": rooms live in one process's memory.
+* **The micro shape has a small slice of one CPU.** That is plenty for the game (it does very little work per room), but `npm install` and `npm run build` will be slow. Be patient, or build on your PC.
+* **Idle reclaim.** Oracle may reclaim Always Free instances that stay nearly idle for an extended period, and its free-tier terms change. Read the current Always Free rules, and keep a backup of `content/story.json` and anything you've customised.
+* **Voice** still needs STUN/TURN to cross some networks; the server relays only the handshake. See "Voice (WebRTC)" below.
+* **Don't expose the game port directly.** Keeping `HOST=127.0.0.1` behind Caddy or the tunnel avoids serving plain http to the world.
 
 ## Voice (WebRTC) wherever you host
 
