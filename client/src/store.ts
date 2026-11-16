@@ -19,6 +19,8 @@ export interface UIState {
   panel: Panel;
   overview: boolean;
   lowGfx: boolean;
+  /** background music: volume 0-1 and on/off, remembered between visits */
+  music: { vol: number; on: boolean };
   rules: boolean;
   sceneReady: boolean;
   sceneStation: string | null;
@@ -60,6 +62,7 @@ let state: UIState = {
   panel: 'case',
   overview: false,
   lowGfx: load('tlt.low', false),
+  music: { vol: 0.6, on: true, ...load<Partial<{ vol: number; on: boolean }>>('tlt.music', {}) },
   rules: false,
   sceneReady: false,
   sceneStation: null,
@@ -99,3 +102,9 @@ export function toast(kind: 'info' | 'error', text: string) {
 }
 
 export const serverNow = () => Date.now() + state.offset;
+
+export function setMusic(patch: Partial<UIState['music']>) {
+  const next = { ...state.music, ...patch };
+  save('tlt.music', next);
+  ui.set({ music: next });
+}

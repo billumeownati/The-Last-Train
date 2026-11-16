@@ -113,6 +113,9 @@ client/src/
     Shadow maps are only refreshed for the carriage on screen, each carriage has a single point light, and scenery textures use 4x anisotropy.
     The *Low gfx* toggle drops shadows, the ink outlines and the pixel ratio (about half the draw calls). The game suggests it once if the frame rate stays below about 22 fps.
     `scene.stats` (fps, draw calls, CPU time) is available from the console as `__scene.stats`.
+* **Music** (`audio.ts`, `ui/Music.tsx`): generative, synthesised with Web Audio, so there are no audio files. Each scenery theme (plus title and ending) is a mood: a scale, a slow chord loop, a pad, a soft bass and a sparse random-walk bell melody through shared reverb and echo.
+  The game phase is a *layer* on the same track (event and ballot go dim and tense, dinner gets warmer with a soft plucked bass), so only a station change crossfades. Volume and on/off are remembered in `localStorage`;
+  music ducks while anyone is speaking. `__music.measure('forest','roam')` renders a mood offline and reports peak/RMS for level checks.
 * **Voice** (`voice.ts`): a peer-to-peer WebRTC **mesh** (at most 15 connections at six players). The server relays signalling and tells clients when voice is allowed (`view.voiceAllowed`:
   on in lobby, briefing, dinner, final vote and endings; off while roaming). Clients obey by muting the local track and the remote audio elements. Public STUN only; add a TURN server if playtests fail to connect.
   Mic level and "speaking" rings come from `AnalyserNode`s. This is *advisory* enforcement: a modified client could keep talking. It is a friends playtest.

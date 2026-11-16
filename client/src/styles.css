@@ -276,3 +276,11 @@ input, textarea { font: inherit; color: inherit; }
 @media (max-width: 1100px) {
   .scene.ingame { right: 300px; } .side-panel { width: 300px; } .topbar, .actionbar, .banner, .sleep-note { right: 300px; } .navbtn.right { right: 318px; } .veil.stage { right: 300px; }
 }
+
+/* ---------------- music control ---------------- */
+.floatmusic { position: absolute; right: 16px; top: 14px; z-index: 30; }
+.musicctl { position: relative; }
+.musicctl .btn.muted { opacity: .6; }
+.musicpop { position: absolute; right: 0; top: calc(100% + 8px); width: 250px; background: #17151df5; border: 1px solid var(--brass); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 14px 40px #000c; z-index: 40; }
+.musicpop input[type=range] { width: 100%; accent-color: var(--brass); }
+.musicpop .nowplaying { font: italic 12px var(--serif); color: #cfc8d8; }

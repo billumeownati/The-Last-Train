@@ -22,6 +22,8 @@ cloudflared tunnel --url http://localhost:3000
 It prints an `https://something.trycloudflare.com` address. Send it to your friends. They open it, type a name and the **4-letter room code** (or use the *Copy invite link* button in the lobby).
 If you play on the same wifi you can instead share `http://<your-LAN-ip>:3000`, but voice will not work there without https.
 
+Hosting somewhere that is not your PC? See [`HOSTING.md`](HOSTING.md).
+
 Everyone should use **desktop Chrome or Firefox** and **headphones** (there is no echo cancellation beyond the browser's own).
 
 ## A session, step by step
@@ -71,6 +73,8 @@ Take notes during or right after. Don't fix things mid-session.
 * Frame rate on the slowest laptop. The **Low gfx** button is in the top bar.
 
 ## Known limits of v1
+
+* **Music** starts after the first click (browsers block audio before that). Each player controls their own volume from the *Music* button; it ducks while someone is talking.
 
 * **Voice is a peer-to-peer mesh with public STUN only.** Behind strict NATs (some corporate or mobile networks) it can fail. If it does, add a TURN server to `ICE` in `client/src/voice.ts`.
 * **Forced-off voice is advisory.** The server decides when voice is allowed; clients mute themselves. A modified client could keep talking while roaming.

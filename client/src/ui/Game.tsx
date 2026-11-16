@@ -3,6 +3,7 @@ import { CARRIAGES, CARRIAGE_NAMES, LUGGAGE_CAPACITY, type CarriageId, type Game
 import { net } from '../net';
 import { serverNow, toast, ui, useUI, type Panel } from '../store';
 import { voice } from '../voice';
+import { MusicControl } from './Music';
 import { CHAR_COLOR, Countdown, Swatch, carName, me, myCarriage, useTick, useView } from './bits';
 
 /* ------------------------------------------------------------------ */
@@ -48,6 +49,7 @@ export function TopBar() {
             🎙 Enable mic
           </button>
         )}
+        <MusicControl />
         <button className={'btn ghost small' + (overview ? ' on' : '')} onClick={() => ui.set({ overview: !overview })}>
           Whole train
         </button>

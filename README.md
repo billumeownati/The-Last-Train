@@ -11,6 +11,7 @@ and at the Last Platform vote on who stays aboard. Everyone else steps down. One
 * **Authoritative server.** Roles, clues and the Stowaway never leave the server until they are meant to.
 * **Voice and text.** Built-in peer-to-peer voice at dinner, forced off while you roam, plus proximity text chat per carriage.
 * **Inked Noir Deco.** A toon-shaded, ink-outlined 3D train in front of painted parallax scenery that changes at every station (forest, flood, fire, snow, dark).
+* **Mild generative music** that changes with each station (and tilts at events, dinner and ballots), with a volume setting. Synthesised in the browser: no audio files.
 * **The whole story is one editable JSON file.**
 
 This is **v1: a friends playtest**. Room codes, no accounts, no database, desktop Chrome or Firefox.
@@ -81,6 +82,7 @@ docs/                    design, architecture, content guide, playtest guide, ro
 | [`docs/CONTENT-GUIDE.md`](docs/CONTENT-GUIDE.md) | how to edit the story: schema, placeholders, dropping roles, checklist |
 | [`docs/PLAYTEST-GUIDE.md`](docs/PLAYTEST-GUIDE.md) | hosting a session, what to watch for, known limits, post-game questions |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | server authority and secrecy, the phase machine, the protocol, the scene, voice, testing |
+| [`docs/HOSTING.md`](docs/HOSTING.md) | where to host it (and why not Vercel) |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | what is deliberately deferred |
 
 ## Status

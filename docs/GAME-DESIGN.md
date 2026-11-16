@@ -180,5 +180,5 @@ If a goal's target role is not in play (4 or 5 players), the goal falls back to 
 
 ## 12. What is deliberately **not** in v1
 
-Mobile, accounts, matchmaking, proximity voice (v1 voice is all-or-nothing by phase), painted artist art, sound design, more than one story,
+Mobile, accounts, matchmaking, proximity voice (v1 voice is all-or-nothing by phase), painted artist art, sound effects (v1 has mild generative music only), more than one story,
 spectators, replays, anti-cheat beyond server-side secrecy. See `ROADMAP.md`.

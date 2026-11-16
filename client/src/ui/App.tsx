@@ -1,5 +1,6 @@
 import { useUI } from '../store';
 import { SceneHost } from './SceneHost';
+import { MusicControl, MusicController } from './Music';
 import { Briefing, Landing, Lobby } from './Screens';
 import { ActionBar, EffectsList, NavButtons, SidePanel, TopBar } from './Game';
 import { ConductorMenu, ConnBanner, DiningVoteModal, Ending, EventModal, FinalVoteModal, PendingRevealModal, Rules, StationBanner, Toasts } from './Overlays';
@@ -34,11 +35,18 @@ function Screen() {
 }
 
 export function App() {
+  const inGame = useUI((s) => !!s.view && ['roam', 'event', 'dining', 'finalVote'].includes(s.view.phase));
   return (
     <div className="app">
       <SceneHost />
+      <MusicController />
       <div className="ui">
         <Screen />
+        {!inGame && (
+          <div className="floatmusic">
+            <MusicControl />
+          </div>
+        )}
       </div>
       <Toasts />
       <ConnBanner />
