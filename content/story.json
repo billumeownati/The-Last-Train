@@ -1,0 +1,381 @@
+{
+  "meta": {
+    "title": "The Last Train",
+    "tagline": "One of you does not belong. One of you must stay.",
+    "premise": "On the night of 14 November 1936 a green Packard left Harrow Hall for the last train at Harrow Junction. It never arrived. Now {count} of you ride a night train that is on no timetable, through the memory of that drive. The conductor has one rule: at the Last Platform, {off} of you may step down. One must stay aboard. And one of you does not belong on this train at all.",
+    "premiseFewer": "The rest of the car's passengers have already stepped down at earlier stops.",
+    "briefingTip": "Read your card in private. Your memory is what you believe happened. Your lie is what you have agreed to say. Your goal is what you want when the train stops."
+  },
+
+  "stations": [
+    { "id": "harrow-wood", "name": "Harrow Wood", "theme": "forest", "blurb": "Low sun through the trees. The drive has only just begun, and everything is still ordinary." },
+    { "id": "vell-ford", "name": "The Vell Ford", "theme": "flood", "blurb": "The river has come up over the road. The lamps show water to the axles and a violet sky." },
+    { "id": "calder", "name": "Calder", "theme": "burning", "blurb": "Calder Works is burning on the horizon. The whole sky is the colour of a furnace door." },
+    { "id": "harrow-pass", "name": "Harrow Pass", "theme": "snow", "blurb": "Snow on the pass, and the bridge somewhere ahead in the white." },
+    { "id": "last-platform", "name": "The Last Platform", "theme": "dark", "blurb": "No scenery left to remember. Only a platform, a lamp, and the dark." }
+  ],
+
+  "roles": [
+    {
+      "id": "A", "character": "fedora", "name": "Walter Hale", "short": "Hale", "title": "The Reporter",
+      "blurb": "Harrow Courier. You came to the gala for a story and stayed for the champagne.",
+      "memory": "You sat up front by the right-hand door, notebook on your knee, with {E:short} pressed against your shoulder and {D:short} at the wheel beyond. {D:short} was driving too fast and you were about to say so when the headlamps found a man in a grey coat standing on the bridge. You were the one who shouted, 'Stop!'",
+      "falseMemory": "You sat in the back beside {C:short}, going over your notes by the dome light. You never saw the road. You only felt the car lurch, and then the cold.",
+      "lie": "You were not working that night. Tell everyone you were only a guest at the gala.",
+      "goal": { "kind": "leaveBehindStowaway", "text": "Find the one who does not belong and leave them aboard. You step down; the Stowaway does not." },
+      "board": "Harrow Hall, the east steps. You were holding your hat against the rain and a notebook against your chest.",
+      "who": "A man who asks questions for his living. He is still asking them, even here.",
+      "epilogues": {
+        "leftWin": ["You step down into a grey morning and a hospital corridor, notebook still in your hand.", "The story is yours at last, and for once it is true."],
+        "leftLose": ["You step down into the morning with the notebook in your hand, and the story is wrong.", "The one you left aboard was never the stranger. The real one walked beside you, and you will wonder about it for the rest of your life."],
+        "stayed": ["The doors close with you on the wrong side of them. You open the notebook; every page is blank.", "For the first time in your life you have a story and nobody to tell it to."]
+      }
+    },
+    {
+      "id": "B", "character": "cloche", "name": "Imogen Marsh", "short": "Marsh", "title": "The Pianist",
+      "blurb": "You played for the gala all evening. Your fingers still remember the last waltz.",
+      "memory": "You sat in the back behind the driver, {D:short}'s shoulders in front of you, {C:short} on your right and {F:short} beyond him. You saw the man first: a grey coat, white in the headlamps. You screamed before anyone else knew why.",
+      "falseMemory": "You sat up front between the driver and the window, humming the last waltz. Nothing on the road disturbed you. You only remember the music stopping.",
+      "lie": "Tell everyone you hardly know Tobias Ashby. You met him tonight, once, at the piano.",
+      "goal": { "kind": "keepTogether", "target": "D", "text": "Tobias Ashby must step down with you. Do not leave this train without him." },
+      "board": "Harrow Hall, the garden door, because you did not want to be seen leaving on Tobias's arm.",
+      "who": "She plays the same four bars over and over. She is waiting for somebody to finish the tune.",
+      "epilogues": {
+        "leftWin": ["Tobias's hand finds yours on the platform, and neither of you says anything.", "You do not touch a piano for a week. Then you play one waltz, only for him, all the way to the end."],
+        "leftLose": ["You step down into a cold morning. Tobias is not beside you, and the piano in your head falls silent.", "You play at his funeral, or at nobody's. The waltz never finds its last bar."],
+        "stayed": ["You hold the door and let the others pass. The train carries you on, humming.", "Somewhere ahead is a piano with all its keys intact. You are in no hurry to reach it."]
+      }
+    },
+    {
+      "id": "C", "character": "bowler", "name": "Lucian Pryce", "short": "Pryce", "title": "The Banker",
+      "blurb": "Pryce Holdings. You own half of Calder and the insurance on the rest.",
+      "memory": "You sat in the middle of the back seat with {B:short} on your left and {F:short} on your right, reading the Calder papers by the dome light. You did not look up. You felt the car leave the road before you knew why.",
+      "falseMemory": "You sat up front next to the driver and told him twice to slow down. You saw the bridge come up out of the sleet and said nothing at all.",
+      "lie": "Tell everyone you have nothing to do with Calder Works. You have never even been there.",
+      "goal": { "kind": "leaveBehind", "target": "A", "text": "Walter Hale must not step down. A man who writes about other men's fires is better left aboard." },
+      "board": "Harrow Hall, the front steps, in your own coat with your own umbrella, and not one friend.",
+      "who": "He counts everything: the seats, the stops, the dead. His sums never come out even.",
+      "epilogues": {
+        "leftWin": ["You step down with your umbrella and your papers, and the reporter does not follow.", "Calder burns for the insurers, not for you. You never sleep well again."],
+        "leftLose": ["You step down, but the reporter steps down with you, notebook open.", "By Monday the Calder story is on every doorstep in Harrow. You count the days it takes them to come."],
+        "stayed": ["You stay aboard with your briefcase on your knees. The numbers will not add up.", "The train rolls on, and you total the Calder insurance again and again, forever and to the farthing."]
+      }
+    },
+    {
+      "id": "D", "character": "flatcap", "name": "Tobias Ashby", "short": "Ashby", "title": "The Driver",
+      "blurb": "Younger son, elder drinker. You said you would drive because you trusted nobody else to.",
+      "memory": "You were driving, with {E:short} against your arm and {A:short} at the door. You had three whiskies at the gala and a fourth from the flask. You saw the man on the bridge, you swerved, and the wheel was in your hands the whole way down.",
+      "falseMemory": "You sat in the back by the window while Baines the chauffeur drove. You were watching the sleet, not the road, and you never saw what happened.",
+      "lie": "Tell everyone you had not had a drop to drink that night.",
+      "goal": { "kind": "getOff", "text": "Get off this train, whatever it takes." },
+      "board": "Harrow Hall, the garage, with the car key still warm in your pocket.",
+      "who": "Big hands and a small voice. He keeps looking at his palms as if they belonged to somebody else.",
+      "epilogues": {
+        "leftWin": ["You step down into the morning on legs that barely hold you, and nobody asks who was driving.", "You never touch a drop again. You never drive again either, and you tell yourself that is enough."],
+        "leftLose": ["You step down, and the whole platform knows who was at the wheel.", "Being let off the train is not the same as being forgiven. You carry the second weight home."],
+        "stayed": ["The doors close. Through the glass you watch the others walk into the morning, and you lift the flask to them, empty.", "Somebody has to be at the wheel of the thing that runs off the road. It has always been you."]
+      }
+    },
+    {
+      "id": "E", "character": "widebrim", "name": "Cora Vance", "short": "Vance", "title": "The Singer",
+      "blurb": "Cora Vance, contralto. The voice went three winters ago; the reputation stayed.",
+      "memory": "You sat up front in the middle, with {D:short} at your left elbow and {A:short} at your right. When the man appeared you grabbed at the wheel to stop the car. You will never be sure whether you turned it toward the rail. You have not told a soul.",
+      "falseMemory": "You sat in the back singing under your breath beside {B:short}. You never moved. You never touched anything.",
+      "lie": "Tell everyone you have never met Lucian Pryce. You do not know the man.",
+      "goal": { "kind": "stayBehind", "text": "You do not want to wake up. Let them decide that you are the one who stays, though you may not vote for yourself." },
+      "board": "Harrow Hall, the stage door, in a gown that still smelled of the footlights.",
+      "who": "She stands like someone waiting to be announced. Nobody has announced her in years.",
+      "epilogues": {
+        "leftWin": ["You step down because you were not allowed to stay, and the morning is brighter than you wanted.", "Hard to say whether you won. You sing one note in the empty station and it comes out true."],
+        "leftLose": ["You step down into a morning you did not ask for. The platform is crowded and nobody looks at you.", "You carry the wheel in your hands for the rest of your life. It is not a role anyone applauds."],
+        "stayedWin": ["The train carries you into the dark and you let it. For the first time in years you are not waiting to be announced.", "You begin to sing. It is the last song in the repertoire, and your voice is all there."],
+        "stayed": ["The train carries you into the dark, singing.", "It was not the wish you made, but it is the wish you get."]
+      }
+    },
+    {
+      "id": "F", "character": "tophat", "name": "Dr. Edmund Vale", "short": "Vale", "title": "The Surgeon",
+      "blurb": "You were the only one who stayed sober, and the only one who counts the bodies.",
+      "memory": "You sat in the back at the right-hand window, perfectly sober, with {C:short} on your left. You counted six in the car and one more on the road. Afterwards you went back for him. There was no body. There was a coat button.",
+      "falseMemory": "You sat in the back beside {B:short} with your eyes closed, dozing, and took the champagne and the rocking of the car for sleep. You heard nothing.",
+      "lie": "Tell everyone you saw nobody on the bridge. Nobody at all.",
+      "goal": { "kind": "leaveBehind", "target": "D", "text": "Tobias Ashby must not step down. He drove them off the road; let him pay." },
+      "board": "Harrow Hall, the cloakroom, with a medical bag nobody asked you to open.",
+      "who": "Clean hands, careful voice. He is looking for a patient who has not arrived.",
+      "epilogues": {
+        "leftWin": ["You step down with your bag and your clean hands, and the man who drove does not follow.", "You write a certificate with a steady hand. It is the first lie you have ever signed."],
+        "leftLose": ["You step down with the driver beside you, and you do not look at him.", "You count the bodies on the way home and the number is always one too many."],
+        "stayed": ["You stay aboard with your medical bag, and the train begins to need a doctor.", "The patients are very quiet. You have all the time in the world."]
+      }
+    }
+  ],
+
+  "stowaway": {
+    "goalText": "Get off the train.",
+    "truth": "You are not a passenger. You are Jonas Marren, signalman at Box 9 on Harrow Pass, and you were standing on the bridge with your lamp when the Packard came. You were already dead. The car never touched you. The train has been carrying you ever since, so that someone would finally hear your warning.",
+    "boardAnswer": "I don't have you on my list.",
+    "redHerringBoard": "Your name is smudged on my list. That is the rain. I am almost sure I wrote it.",
+    "hints": [
+      {
+        "station": 1,
+        "text": "Your cabin door has no nameplate. You only notice it when you reach for the handle: every other door has a small brass plate.",
+        "redHerrings": ["The brass plate on your cabin door is crooked, as if somebody screwed it on in a hurry. The name is yours; you check twice."]
+      },
+      {
+        "station": 2,
+        "text": "The conductor's eyes pass over you, and stop. He checks his list, frowns, and says nothing.",
+        "redHerrings": ["The conductor checks his list twice when he passes you, then shrugs and smiles."]
+      },
+      {
+        "station": 3,
+        "text": "You remember a scene in the Observation Car that you cannot have watched: a lamp swinging on a bridge, in a small cold hand. Your hand?",
+        "redHerrings": ["You catch the edge of a vision that is not meant for you: a lamp swinging on a bridge. You are sure it belongs to somebody else."]
+      },
+      {
+        "station": 4,
+        "confirmation": true,
+        "text": "The conductor stops beside you and speaks without moving his lips. 'No ticket. No name on my list. You are the Stowaway. Keep your seat and keep your counsel; I will not tell the others. Your way off is the same as theirs.' You are not who you thought you were."
+      },
+      {
+        "station": 5,
+        "text": "Somewhere ahead a lamp is lit for seven. Six were already burning. You can feel the seventh waiting for you.",
+        "redHerrings": ["Somewhere ahead a lamp burns for you. There are exactly as many lamps as passengers."]
+      }
+    ],
+    "epilogues": {
+      "left": ["The platform takes your weight at last. For one breath you remember a lamp, a bridge, a car that never touched you.", "Then the doors close behind you, the lamp is gone, and night is only night."],
+      "stayed": ["The doors close. You swing the lamp the way you did on the bridge, a warning nobody hears.", "The train pulls away into the dark. You are exactly where you belong: on the line, with your lamp."]
+    },
+    "reveal": "{name} was the Stowaway: the signalman Jonas Marren, who was standing on Harrow Pass bridge when the Packard came. The car never touched him. He had died at his post an hour before the headlamps found him, and the train was the only way left to carry the warning."
+  },
+
+  "objects": [
+    { "id": "eng-manifest", "carriage": "engine", "label": "Driver's log", "kind": "desk", "slot": 1, "from": 4, "empty": "A log book with every page ruled and no entries." },
+    { "id": "eng-lever", "carriage": "engine", "label": "Brake lever", "kind": "device", "slot": 2, "from": 4, "empty": "The lever is set to SLOW. It was set to SLOW before anyone touched it." },
+    { "id": "eng-firebox", "carriage": "engine", "label": "Firebox", "kind": "device", "slot": 0, "from": 4, "empty": "The fire burns without fuel. It has never needed any." },
+
+    { "id": "obs-desk", "carriage": "observation", "label": "Writing desk", "kind": "desk", "slot": 0, "from": 2, "empty": "Blotting paper, a dry pen, and the faint ghost of a name." },
+    { "id": "obs-bookcase", "carriage": "observation", "label": "Bookcase", "kind": "shelf", "slot": 1, "from": 2, "empty": "Every book is the same book, in a different binding." },
+    { "id": "obs-window", "carriage": "observation", "label": "The viewing glass", "kind": "window", "slot": 3, "from": 1, "empty": "The glass shows only your own face." },
+    { "id": "obs-lamp", "carriage": "observation", "label": "Hanging lantern", "kind": "lantern", "slot": 4, "from": 3, "empty": "A lantern, unlit." },
+    { "id": "obs-telescope", "carriage": "observation", "label": "Brass telescope", "kind": "device", "slot": 5, "from": 3, "empty": "Through the lens: the dark, and your own breath." },
+    { "id": "obs-lockbox", "carriage": "observation", "label": "Lockbox under the sofa", "kind": "lockbox", "slot": 2, "from": 1, "locked": true, "empty": "Empty." },
+    { "id": "obs-suitcase", "carriage": "observation", "label": "A stranger's suitcase", "kind": "bag", "slot": 6, "from": 3, "hidden": true, "empty": "Empty." },
+
+    { "id": "din-bar", "carriage": "dining", "label": "The bar", "kind": "cabinet", "slot": 0, "from": 1, "empty": "Bottles of something amber. All of them are empty." },
+    { "id": "din-sideboard", "carriage": "dining", "label": "Sideboard", "kind": "drawer", "slot": 1, "from": 1, "empty": "Napkins pressed into the shape of swans." },
+    { "id": "din-cabinet", "carriage": "dining", "label": "Locked china cabinet", "kind": "lockbox", "slot": 2, "from": 1, "locked": true, "empty": "Plates stacked for a dinner that never began." },
+    { "id": "din-table", "carriage": "dining", "label": "Corner table", "kind": "desk", "slot": 4, "from": 2, "empty": "Six place settings, each set for a different meal." },
+    { "id": "din-flowers", "carriage": "dining", "label": "Vase of dead flowers", "kind": "device", "slot": 5, "from": 3, "empty": "The flowers are dust. The water is fresh." },
+
+    { "id": "lug-trunk-1", "carriage": "luggage", "label": "Steamer trunk", "kind": "trunk", "slot": 0, "from": 2, "empty": "Folded clothes that have never been worn." },
+    { "id": "lug-trunk-2", "carriage": "luggage", "label": "Leather trunk", "kind": "trunk", "slot": 1, "from": 2, "empty": "Smells of cedar and cigar smoke." },
+    { "id": "lug-crate", "carriage": "luggage", "label": "Wooden crate", "kind": "crate", "slot": 2, "from": 2, "empty": "Straw, and the shape of something that was here." },
+    { "id": "lug-mailbag", "carriage": "luggage", "label": "Mail bag", "kind": "bag", "slot": 3, "from": 4, "empty": "Letters addressed to people who got off long ago." },
+    { "id": "lug-hatbox", "carriage": "luggage", "label": "Hat box", "kind": "bag", "slot": 4, "from": 4, "empty": "A hat that fits nobody." },
+    { "id": "lug-coatrack", "carriage": "luggage", "label": "Coat rack", "kind": "coat", "slot": 5, "from": 5, "empty": "Empty hangers swinging in time with the train." },
+    { "id": "lug-strongbox", "carriage": "luggage", "label": "Iron strongbox", "kind": "lockbox", "slot": 6, "from": 1, "locked": true, "empty": "Empty." },
+    { "id": "lug-golfbag", "carriage": "luggage", "label": "Golf bag", "kind": "bag", "slot": 7, "from": 5, "empty": "Seven clubs, and a hole in the leather where the eighth lived." },
+
+    { "id": "cab-A-trunk", "carriage": "sleepers", "owner": "A", "label": "Trunk", "kind": "trunk", "slot": 0, "from": 1, "empty": "Collar studs, a spare tie, and a carbon copy of nothing." },
+    { "id": "cab-A-bunk", "carriage": "sleepers", "owner": "A", "label": "Bunk", "kind": "bunk", "slot": 0, "from": 3, "empty": "A pillow that still holds the shape of a head." },
+    { "id": "cab-B-trunk", "carriage": "sleepers", "owner": "B", "label": "Trunk", "kind": "trunk", "slot": 1, "from": 1, "empty": "Sheet music, every page missing its last bar." },
+    { "id": "cab-B-bunk", "carriage": "sleepers", "owner": "B", "label": "Bunk", "kind": "bunk", "slot": 1, "from": 4, "empty": "Cold sheets and a faint smell of lavender." },
+    { "id": "cab-C-trunk", "carriage": "sleepers", "owner": "C", "label": "Trunk", "kind": "trunk", "slot": 2, "from": 1, "empty": "Ledgers, balanced to the penny. It does not comfort you." },
+    { "id": "cab-C-bunk", "carriage": "sleepers", "owner": "C", "label": "Bunk", "kind": "bunk", "slot": 2, "from": 3, "empty": "A pillow squared off like a parcel." },
+    { "id": "cab-D-trunk", "carriage": "sleepers", "owner": "D", "label": "Trunk", "kind": "trunk", "slot": 3, "from": 1, "empty": "Muddy boots, and a tin of tobacco with nothing in it." },
+    { "id": "cab-D-bunk", "carriage": "sleepers", "owner": "D", "label": "Bunk", "kind": "bunk", "slot": 3, "from": 4, "empty": "The blanket is pulled up high, as if for a child." },
+    { "id": "cab-E-trunk", "carriage": "sleepers", "owner": "E", "label": "Trunk", "kind": "trunk", "slot": 4, "from": 1, "empty": "Evening gloves, a stage-door key, and a wilted corsage." },
+    { "id": "cab-E-bunk", "carriage": "sleepers", "owner": "E", "label": "Bunk", "kind": "bunk", "slot": 4, "from": 3, "empty": "The pillow smells of cold cream and cigarettes." },
+    { "id": "cab-F-trunk", "carriage": "sleepers", "owner": "F", "label": "Trunk", "kind": "trunk", "slot": 5, "from": 4, "empty": "Surgical instruments, in rows, polished to a mirror." },
+    { "id": "cab-F-bunk", "carriage": "sleepers", "owner": "F", "label": "Bunk", "kind": "bunk", "slot": 5, "from": 1, "empty": "Made, with hospital corners." }
+  ],
+
+  "clues": [
+    { "id": "c-A1", "type": "lie", "role": "A", "object": "obs-desk", "title": "A press card",
+      "text": "A Harrow Courier press card tucked in a hatband: W. HALE, STAFF. Folded inside it is a pencilled note: 'Gala. Pryce, Calder insurance. Ask Vale about the medical certificate.' He was working." },
+    { "id": "c-A2", "type": "lie", "role": "A", "object": "cab-C-trunk", "title": "A telegram",
+      "text": "A telegram from the Courier's editor, delivered to Harrow Hall: 'RUN CALDER PIECE MONDAY STOP GOOD WORK HALE STOP.' It has been opened by someone who was not Hale." },
+    { "id": "c-B1", "type": "lie", "role": "B", "object": "lug-hatbox", "title": "A ring box",
+      "text": "A velvet ring box, empty. Inscribed inside the lid: 'T. from I. Spring 1937.'" },
+    { "id": "c-B2", "type": "lie", "role": "B", "object": "cab-F-trunk", "title": "An unsent letter",
+      "text": "A letter in a woman's hand, never posted: 'Tobias will not listen to me about the whisky. He never listens. If anything happens tonight, tell him I loved him anyway. I.'" },
+    { "id": "c-C1", "type": "lie", "role": "C", "object": "lug-strongbox", "title": "Share certificates",
+      "text": "Share certificates, scorched along one edge: CALDER WORKS LTD, 4,000 SHARES, L. PRYCE." },
+    { "id": "c-C2", "type": "lie", "role": "C", "object": "cab-A-trunk", "title": "A newspaper cutting",
+      "text": "A cutting folded small: 'CALDER WORKS DESTROYED. Pryce Holdings insured for twice its worth.' Somebody has underlined 'twice' three times." },
+    { "id": "c-D1", "type": "lie", "role": "D", "object": "lug-golfbag", "title": "A hip flask",
+      "text": "A silver hip flask engraved T.A., empty, still smelling of Scotch. There is a fresh dent in the side, as though it was thrown." },
+    { "id": "c-D2", "type": "lie", "role": "D", "object": "cab-B-trunk", "title": "A tumbler",
+      "text": "A cut-glass tumbler with a thumbprint in the dregs and a smear of Scotch. The monogram on the base reads T.A. Whoever drank from it did so tonight." },
+    { "id": "c-E1", "type": "lie", "role": "E", "object": "obs-lockbox", "title": "A signed programme",
+      "text": "A gala programme signed in a flowing hand: 'To Lucian, for the season you promised me. Cora.' Tucked inside is a cheque stub made out to Cora Vance and signed L. Pryce." },
+    { "id": "c-E2", "type": "lie", "role": "E", "object": "cab-D-trunk", "title": "A theatre contract",
+      "text": "A contract: 'Pryce Holdings engages Miss Cora Vance, contralto, for twelve weeks.' Both names are signed. The ink is still wet." },
+    { "id": "c-F1", "type": "lie", "role": "F", "object": "lug-crate", "title": "A doctor's bag",
+      "text": "A doctor's bag, open. Wrapped in a handkerchief inside it: a torn strip of heavy grey wool, stiff with blood that does not belong to anyone aboard. A man's overcoat." },
+    { "id": "c-F2", "type": "lie", "role": "F", "object": "cab-A-bunk", "title": "A diary page",
+      "text": "A page from a pocket diary in a surgeon's neat hand: '11.57. Man on the bridge, grey coat, lamp. Told Ashby. Ashby did not hear. I did not shout.'" },
+
+    { "id": "c-MA", "type": "memory", "role": "A", "object": "cab-E-bunk", "title": "A coat button",
+      "text": "A brass trench-coat button and a thread of camel wool, caught on a door latch. It is the front passenger door, the right-hand side. Someone leaned out of it to shout." },
+    { "id": "c-MB", "type": "memory", "role": "B", "object": "obs-bookcase", "title": "A torn glove",
+      "text": "A plum kid glove with one finger torn through, wedged behind the driver's seat, the fingers clenched around the stuffing. Somebody sat behind the wheel and gripped hard enough to tear." },
+    { "id": "c-MC", "type": "memory", "role": "C", "object": "lug-mailbag", "title": "Papers and pinstripe",
+      "text": "Damp papers with pinstripe lint stuck to them, and a paper clip, on the folded-down armrest in the middle of the rear seat. A banker's habit: reading in a moving car." },
+    { "id": "c-MD", "type": "memory", "role": "D", "object": "lug-trunk-2", "title": "Driving gloves",
+      "text": "A pair of driving gloves, the palms worn into the curve of a steering wheel, and a car key on a fob: T. A. The gloves are still warm." },
+    { "id": "c-ME", "type": "memory", "role": "E", "object": "cab-C-bunk", "title": "A white glove",
+      "text": "A long white evening glove, the fingertips scuffed black by leather, hooked over the steering wheel. Someone in the middle of the front bench reached across and grabbed." },
+    { "id": "c-MF", "type": "memory", "role": "F", "object": "cab-B-bunk", "title": "A stethoscope",
+      "text": "A stethoscope hooked over the rear right-hand door handle and a smear of sleet on the glass beside it. The back seat, right-hand window. A doctor's place, away from the driver." },
+
+    { "id": "c-plate", "type": "truth", "object": "lug-coatrack", "title": "A dashboard plate",
+      "text": "A crumpled brass plate from the dashboard: HARROW HALL MOTOR. SEATS SIX. Under it, in the conductor's pencil: 'Seven tickets sold.'" },
+    { "id": "c-button", "type": "truth", "object": "lug-trunk-1", "title": "A horn button",
+      "text": "A black horn button from a heavy grey overcoat. No coat on this train is grey." },
+    { "id": "c-prints", "type": "truth", "object": "din-bar", "title": "Bootprints",
+      "text": "Wet bootprints, size eleven, in the mud on the floor, leading to the Packard's door. There are none leading away." },
+    { "id": "c-lantern", "type": "truth", "object": "obs-lamp", "title": "A signal lamp",
+      "text": "A signalman's lantern with a cracked glass. The wick is cold and the brass is faintly warm. A name is scratched on its base: J. MARREN, BOX 9." },
+    { "id": "c-plan", "type": "truth", "object": "obs-telescope", "title": "A bridge plan",
+      "text": "A railway plan of Harrow Pass bridge with a small red cross at midspan: 'Signal Box 9. Keeper: J. Marren. Lamp to be shown at dusk.'" },
+    { "id": "c-programme", "type": "truth", "object": "din-sideboard", "title": "The gala running order",
+      "text": "The gala's running order, annotated by the hostess: 'Baines dismissed 10 p.m. (sherry on the hall table). Mr Ashby will drive the party to the Junction. Insists.'" },
+    { "id": "c-list", "type": "truth", "object": "din-cabinet", "title": "The conductor's list",
+      "text": "The conductor's pencil list: six names in a column. Beneath them is a seventh line, rubbed out so hard that the paper has worn through." },
+    { "id": "c-seats", "type": "truth", "object": "din-table", "title": "Seat cushions",
+      "text": "The Packard's seat cushions, stained with sleet. Three dents in the front bench, three in the back. Six sat down. None of them stood." },
+    { "id": "c-telegram", "type": "truth", "object": "din-flowers", "title": "A fire telegram",
+      "text": "A fire-brigade telegram: 'CALDER WORKS ABLAZE 11.30 STOP SKY RED TO HARROW STOP.' The sky outside the car that night was red." },
+    { "id": "c-news", "type": "truth", "object": "cab-D-bunk", "title": "Tomorrow's newspaper",
+      "text": "A folded newspaper dated tomorrow: 'HARROW PASS. Packard recovered from the river. Signalman J. Marren found at his post, dead since evening.' The word 'since' has been underlined." },
+    { "id": "c-suitcase", "type": "event", "object": "obs-suitcase", "title": "The stranger's suitcase",
+      "text": "A battered suitcase tagged J. MARREN. Inside: a signalman's rulebook, open at the page headed 'Persons on the Line', and an unclaimed ticket stamped NO SEAT." },
+    { "id": "c-manifest", "type": "engine", "object": "eng-manifest", "title": "A torn manifest page",
+      "text": "A torn page of the conductor's manifest. Two names are ticked: {legit1} and {legit2}. Beside them, in the conductor's careful hand: 'Boarded where they should. No question.' A third tick has been started and crossed out." }
+  ],
+
+  "events": [
+    {
+      "station": 1, "title": "The Lights Fail",
+      "text": "The lamps gutter along the train and go out in a long wave, front to back. In the Sleeper Car the dark is total. Nobody can find a cabin door, let alone search behind one.",
+      "effects": [
+        { "type": "lockSearch", "carriage": "sleepers", "scope": "event+roam" },
+        { "type": "blackout", "scope": "event" }
+      ],
+      "worse": { "text": "", "effects": [] }
+    },
+    {
+      "station": 2, "title": "The Luggage Van Floods",
+      "text": "Water, from the river, from the road, from memory, pours under the luggage van door. The conductor chains it shut. Whatever is in there will keep until the next stop.",
+      "effects": [ { "type": "closeCarriage", "carriage": "luggage", "scope": "event+roam" } ],
+      "worse": {
+        "text": "Because nobody chose, the flood climbs: the gangways run ankle-deep and every step is slower.",
+        "effects": [ { "type": "slowWalk", "factor": 1.5, "scope": "event+roam" } ]
+      }
+    },
+    {
+      "station": 3, "title": "A Stranger's Suitcase",
+      "text": "A battered suitcase has appeared in the Observation Car, though nobody remembers carrying it aboard. The conductor will not touch it.",
+      "effects": [ { "type": "spawnObject", "object": "obs-suitcase" } ],
+      "worse": {
+        "text": "Because nobody chose, frost spreads over the Observation Car windows, and the viewing glass turns milky.",
+        "effects": [ { "type": "lockVision", "scope": "event+roam" } ]
+      }
+    },
+    {
+      "station": 4, "title": "The Engine Unlocks",
+      "text": "With a sound like a held breath let go, the engine door swings open. The cab is empty and the fire is burning anyway. The conductor walks the length of the train, and for a moment seems to look at somebody.",
+      "effects": [ { "type": "unlockCarriage", "carriage": "engine" }, { "type": "confirmStowaway" } ],
+      "worse": {
+        "text": "Because nobody chose, the cold comes in with it: numb fingers make every search take half again as long.",
+        "effects": [ { "type": "slowSearch", "factor": 1.5, "scope": "event+roam" } ]
+      }
+    },
+    {
+      "station": 5, "title": "The Train Slows",
+      "text": "The wheels drag. The wind falls away. Ahead stands a single platform lamp. The train is slowing for the Last Platform, and everyone aboard feels the weight of the stop.",
+      "effects": [ { "type": "slowWalk", "factor": 1.5, "scope": "event" } ],
+      "worse": {
+        "text": "Because nobody chose, the train lurches to a crawl: the luggage van is sealed and every search is slower.",
+        "effects": [
+          { "type": "closeCarriage", "carriage": "luggage", "scope": "event" },
+          { "type": "slowSearch", "factor": 1.5, "scope": "event" }
+        ]
+      }
+    }
+  ],
+
+  "visions": [
+    "Through the trees: headlamps, then a tall figure standing between the trunks, waiting. When you blink, he is a tree.",
+    "Floodwater up to the sleepers. The Packard's roof, a hand resting on it, a grey sleeve. Then only ripples.",
+    "Calder burns. In the glare, on a bridge that is not yet there, there is a silhouette. It is holding something up, a light.",
+    "The bridge, in snow. A lamp swinging in slow arcs: a warning, or a farewell. Nobody is holding it.",
+    "A platform in the dark with seven lamps. Six are lit. The seventh is being carried toward you."
+  ],
+
+  "conductor": {
+    "route": ["dining", "sleepers", "observation", "luggage", "engine"],
+    "intro": "'Tickets. Questions, if you must. One per station, and I answer what is true, not what is kind.'",
+    "refuse": "'I have answered you already this station. Ask me at the next.'",
+    "where": [
+      "'To Harrow Junction, where the last train leaves. It always leaves. It has never arrived.'",
+      "'Across the water. Water keeps no timetable.'",
+      "'Through the fire. Do not look at the windows. Look at each other.'",
+      "'Up. To the Pass. You know the Pass.'",
+      "'To the last platform. Mind the gap. Mind your answers.'"
+    ],
+    "carriage": {
+      "engine": "'Where the fire is, and nobody to feed it.'",
+      "observation": "'Where the past is on show, and the glass is honest about half of it.'",
+      "dining": "'Where you eat, and talk, and lie, in that order.'",
+      "sleepers": "'Six doors, six names. Doors keep secrets better than people do.'",
+      "luggage": "'Everything you would not carry, and one thing you could not put down.'"
+    },
+    "tieBreak": "The conductor draws a ticket from his cap."
+  },
+
+  "diningVotes": [
+    {
+      "station": 1,
+      "prompt": "The conductor lays a gloved hand on the table: 'The train can do one small thing for you tonight. Choose, or choose nothing.'",
+      "options": [
+        { "id": "1a", "kind": "openLocked", "target": "din-cabinet", "text": "Break open the locked china cabinet in this car." },
+        { "id": "1b", "kind": "searchSuitcase", "target": "C", "text": "Search the suitcase of {target}. Whatever they are holding, they must show the table." },
+        { "id": "1c", "kind": "shiftLuggage", "text": "Have the porter shift the luggage in the van. Everything will land somewhere new." }
+      ]
+    },
+    {
+      "station": 2,
+      "prompt": "'The water has taught the train a few tricks. What shall it do?'",
+      "options": [
+        { "id": "2a", "kind": "openLocked", "target": "lug-strongbox", "text": "Pry open the iron strongbox in the luggage van." },
+        { "id": "2b", "kind": "confine", "target": "random", "text": "Lock {target} in their cabin for the next leg. They may search only their own cabin." },
+        { "id": "2c", "kind": "searchSuitcase", "target": "random", "text": "Search the suitcase of {target}. They must show the table what they hold." }
+      ]
+    },
+    {
+      "station": 3,
+      "prompt": "'Calder is burning, and the heat has loosened things. Choose.'",
+      "options": [
+        { "id": "3a", "kind": "openLocked", "target": "obs-lockbox", "text": "Force the lockbox under the sofa in the Observation Car." },
+        { "id": "3b", "kind": "confine", "target": "random", "text": "Lock {target} in their cabin for the next leg. They may search only their own cabin." },
+        { "id": "3c", "kind": "searchSuitcase", "target": "random", "text": "Search the suitcase of {target}. They must show the table what they hold." }
+      ]
+    },
+    {
+      "station": 4,
+      "prompt": "'One more kindness before the Pass. Make it count.'",
+      "options": [
+        { "id": "4a", "kind": "searchSuitcase", "target": "random", "text": "Search the suitcase of {target}. They must show the table what they hold." },
+        { "id": "4b", "kind": "confine", "target": "random", "text": "Lock {target} in their cabin for the next leg. They may search only their own cabin." },
+        { "id": "4c", "kind": "shiftLuggage", "text": "Shift the luggage in the van once more, and see what falls out." }
+      ]
+    }
+  ],
+
+  "finalVote": {
+    "prompt": "The train has stopped. The doors are open on the Last Platform. All but one of you may step down. Who stays aboard?",
+    "tieBreakText": "The vote is tied. The conductor draws a ticket from his cap."
+  }
+}

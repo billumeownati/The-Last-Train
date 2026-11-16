@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Last Train — Style Options</title>
+<style>
+:root{--bg:#0e0d12;--panel:#17151d;--line:#2a2733;--ink:#ece6da;--mute:#9a93a6;--accent:#e9a24a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Georgia,'Times New Roman',serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+h1{font-size:40px;margin:0 0 6px;letter-spacing:.5px}
+h2{font-size:26px;margin:0}
+h3{font:600 12px/1 system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:26px 0 10px}
+p{margin:.4em 0}
+header{padding:48px 0 18px}
+.sub{color:var(--mute);max-width:720px}
+.refs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:18px 0 8px}
+.ref{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.ref b{display:block;font:600 13px system-ui,sans-serif;color:var(--accent);margin-bottom:4px}
+.ref span{color:var(--mute);font-size:13.5px}
+.style{margin:54px 0;border-top:1px solid var(--line);padding-top:34px}
+.tag{font:600 12px system-ui,sans-serif;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+.pitch{max-width:760px;color:#cfc8d8;margin:8px 0 18px}
+svg{display:block;width:100%;height:auto;border-radius:10px}
+.hero{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.strip figure{margin:0}
+.strip figcaption{font:12px system-ui,sans-serif;color:var(--mute);margin-top:5px}
+.swatches{display:flex;gap:8px;flex-wrap:wrap}
+.sw{width:92px;font:11px system-ui,sans-serif;color:var(--mute)}
+.sw i{display:block;height:44px;border-radius:8px;border:1px solid #ffffff22;margin-bottom:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pc div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:14px}
+.pc b{font:600 12px system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.pc ul{margin:6px 0 0;padding-left:18px;color:#cfc8d8}
+.pro b{color:#8fd18f}.con b{color:#e98a7a}
+.cast{background:#0000;border:1px solid var(--line);border-radius:10px}
+.rec{background:linear-gradient(135deg,#2a1f12,#17151d);border:1px solid #5a4020;border-radius:12px;padding:20px 24px;margin:20px 0 60px}
+.rec h2{margin-bottom:8px}
+code{font:13px ui-monospace,Consolas,monospace;background:#ffffff12;padding:1px 6px;border-radius:4px}
+@media(max-width:760px){.two,.pc{grid-template-columns:1fr}.strip{grid-template-columns:1fr 1fr}h1{font-size:30px}}
+
+/* ---------- UI samples ---------- */
+.ui{border-radius:10px;padding:18px;font-family:system-ui,sans-serif;min-height:230px;position:relative;overflow:hidden}
+/* A: ticket */
+.uiA{background:#0b0d1a;display:flex;align-items:center;justify-content:center}
+.ticketA{background:#f3e3bf;color:#2b1d14;width:100%;max-width:380px;border-radius:6px;display:flex;position:relative;font-family:Georgia,serif;box-shadow:0 6px 24px #0008}
+.ticketA .main{padding:14px 16px;flex:1;border-right:2px dashed #2b1d1455}
+.ticketA .stub{padding:14px 10px;writing-mode:vertical-rl;text-align:center;letter-spacing:.25em;font-weight:700;font-size:12px}
+.ticketA small{letter-spacing:.2em;font:600 10px system-ui;opacity:.7}
+.ticketA h4{margin:2px 0 8px;font-size:19px}
+.btnA{display:inline-block;background:#2b1d14;color:#f3e3bf;padding:6px 12px;border-radius:3px;font:600 12px system-ui;margin:3px 4px 0 0}
+.btnA.hot{background:#ee5a3c}
+.ticketA:before,.ticketA:after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:#0b0d1a;right:48px}
+.ticketA:before{top:-8px}.ticketA:after{bottom:-8px}
+/* B: case file */
+.uiB{background:radial-gradient(circle at 30% 20%,#2a1f1a,#120c0a);display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.cardB{background:#e8d9b5;color:#1b1210;width:104px;padding:7px 7px 9px;border:2px solid #1b1210;position:relative;font:600 11px 'Courier New',monospace;transform:rotate(-2deg);box-shadow:3px 4px 0 #000a}
+.cardB:nth-child(2){transform:rotate(1.8deg)}.cardB:nth-child(3){transform:rotate(-1deg)}
+.cardB .ph{height:62px;background:#1b1210;margin-bottom:5px;position:relative;overflow:hidden}
+.cardB:before{content:"";position:absolute;top:-9px;left:34px;width:36px;height:14px;background:#c9a24a99;transform:rotate(-4deg)}
+.stamp{position:absolute;right:-6px;top:20px;border:2px solid #b3202f;color:#b3202f;padding:1px 5px;transform:rotate(-14deg);font:800 12px 'Courier New',monospace;background:#e8d9b5cc}
+.noteB{flex:1;min-width:170px;color:#e8d9b5;font:12px 'Courier New',monospace;border-left:2px solid #b3202f;padding-left:10px}
+.noteB b{color:#c9a24a}
+/* C: cozy */
+.uiC{background:linear-gradient(180deg,#f7d9a8,#f2a66b);display:flex;align-items:center;justify-content:center}
+.panelC{background:#fff1d6;color:#6b4a3a;border-radius:22px;padding:14px 16px;width:100%;max-width:340px;box-shadow:0 6px 0 #c98a5a,0 12px 24px #6b4a3a55;border:3px solid #fff8e8}
+.panelC .hd{background:#e8795a;color:#fff1d6;text-align:center;border-radius:14px;padding:3px;font-weight:700;font-size:13px;margin:-26px 30px 10px}
+.rowC{display:flex;gap:8px;margin:8px 0}
+.chipC{flex:1;background:#fff;border-radius:14px;padding:8px 4px;text-align:center;font-size:12px;box-shadow:inset 0 -3px 0 #f0dcbc}
+.chipC.sel{background:#ffd9a8;box-shadow:inset 0 -3px 0 #e8a85a,0 0 0 2px #e8795a}
+.chipC i{display:block;width:26px;height:26px;border-radius:50%;margin:0 auto 4px}
+.btnC{background:#6b4a3a;color:#fff1d6;border-radius:999px;text-align:center;padding:7px;font-weight:700;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="tag">The Last Train · Art Direction</div>
+  <h1>Three Initial Styles</h1>
+  <p class="sub">All three keep your core idea — a side-on lamp-lit cutaway train against scrolling painted scenery that darkens at each station. They differ in how the world is drawn, which changes mood, effort, and how well it reads when six people are staring at it while arguing.</p>
+</header>
+
+<section>
+  <h3>What I took from your 14 references</h3>
+  <div class="refs">
+    <div class="ref"><b>Cutaway train interiors</b><span>Cross-section, side-view and isometric room refs. Dense props (globes, typewriters, gramophones), brass art-deco trim, warm cel-shaded light, heavy ink outline. This is your "dollhouse" feeling.</span></div>
+    <div class="ref"><b>Window-silhouette grid</b><span>The strongest idea for a social game: lit rectangles in a dark body, each person a flat silhouette. Instantly readable, and every carriage window can be a "room".</span></div>
+    <div class="ref"><b>Layered scenery</b><span>Forest silhouettes, purple flooded swamp, burning village, overgrown skyline. Atmospheric depth through value steps; blue-to-orange gradients; a different palette per station.</span></div>
+    <div class="ref"><b>1930s fashion plates</b><span>Cloche hats, fedoras, bowlers, flat caps, long coats, wide trousers. Silhouette variety comes from hat + coat length, so characters stay distinct even tiny.</span></div>
+    <div class="ref"><b>Ticket and UI refs</b><span>Sepia engraved ticket with perforation and stamps; a paper-card social-deduction board with red string; a soft rounded cozy panel UI. These map to three different UI directions.</span></div>
+    <div class="ref"><b>The tension in your refs</b><span>Some are cozy and rounded, some are noir and inked, some are flat and graphic. Picking one lane per style gives a cohesive result.</span></div>
+  </div>
+</section>
+
+<main id="styles"></main>
+
+<section class="rec">
+  <h2>My recommendation</h2>
+  <p><b>Start with Style A (Paper Lamplight)</b>, and borrow Style B's ticket-and-stamp UI. A's flat shapes are cheap to produce and easy to animate and parallax in a browser. The silhouettes also make "who is where" readable at a glance. Because the Stowaway is unaware and the story darkens, reducing each station to a limited palette does the storytelling for you.</p>
+  <p>Style B is the most beautiful per frame but costs the most art, and hand-inked detail fights with parallax and moving figures. Style C is the friendliest, but its cosiness can undercut the dread at stations 3 and 4, unless you lean on that contrast deliberately.</p>
+  <p style="color:var(--mute)">Tell me which one (or a mix) and I'll turn it into a proper style guide: palette tokens, figure construction rules, parallax layer spec, and UI kit.</p>
+</section>
+</div>
+
+<script>
+/* ================================================================
+   Shared helpers
+================================================================ */
+let UID=0;
+const rng=s=>()=>((s=(s*16807)%2147483647)/2147483647);
+const ST=['forest','flood','burning','snow'];
+const LBL={forest:'Station 1 · Forest',flood:'Station 2 · Flooded plain',burning:'Station 3 · Burning city',snow:'Station 4 · Snow'};
+const DK='#090b16';
+
+const PAL={
+ A:{
+  forest:{sky:['#16243f','#e0875a'],far:'#3b4a72',mid:'#26304f',near:'#0b0f1c',glow:'#ffb36b',water:'#000'},
+  flood :{sky:['#2a1f4d','#b0709a'],far:'#5a4a8a',mid:'#3b3070',near:'#150f2b',glow:'#ffa0c8',water:'#7a6ab8'},
+  burning:{sky:['#1a0a08','#ff9a2e'],far:'#7a2a10',mid:'#3d1208',near:'#120504',glow:'#ffcf5a',water:'#000'},
+  snow  :{sky:['#2b3f5c','#cfe0ee'],far:'#8fa8c2',mid:'#5f7896',near:'#1c2a3d',glow:'#ffffff',water:'#000'}},
+ B:{
+  forest:{sky:['#2c3c3c','#e0b868'],far:'#5e6e4c',mid:'#3a4a34',near:'#141912',glow:'#fff0b0',water:'#000'},
+  flood :{sky:['#2b2a3e','#8a7592'],far:'#555070',mid:'#3a3552',near:'#171420',glow:'#d8b0c8',water:'#6a5a8a'},
+  burning:{sky:['#2a1208','#d8651c'],far:'#6a2a14',mid:'#3a1a10',near:'#140806',glow:'#f0a040',water:'#000'},
+  snow  :{sky:['#3a4552','#c2c8cc'],far:'#8e9aa6',mid:'#667480',near:'#222a32',glow:'#f4f4ee',water:'#000'}},
+ C:{
+  forest:{sky:['#2d3a66','#f2a66b'],far:'#5a6c9a',mid:'#44558a',near:'#2a3560',glow:'#ffd9a0',water:'#000'},
+  flood :{sky:['#4a3a7a','#e79bb8'],far:'#7a68a8',mid:'#5e4e92',near:'#3a2e66',glow:'#ffd0e0',water:'#9a88c8'},
+  burning:{sky:['#5a1a2a','#ffc04a'],far:'#a8402a',mid:'#7a2a2a',near:'#4a1a22',glow:'#ffe08a',water:'#000'},
+  snow  :{sky:['#5a7aa8','#f0f4fa'],far:'#b8cce2',mid:'#8aa6c8',near:'#5a7498',glow:'#ffffff',water:'#000'}}
+};
+
+function ridge(r,base,amp,col,smooth,extra=''){
+  const pts=[];for(let x=-20;x<=980;x+=40)pts.push([x,base-r()*amp]);
+  let d=`M-20 400 L${pts[0][0]} ${pts[0][1]}`;
+  if(smooth){for(let i=1;i<pts.length;i++){const[x0,y0]=pts[i-1],[x1,y1]=pts[i];d+=` Q${x0} ${y0} ${(x0+x1)/2} ${(y0+y1)/2}`}}
+  else pts.slice(1).forEach(p=>d+=` L${p[0]} ${p[1]}`);
+  return `<path d="${d} L980 400Z" fill="${col}" ${extra}/>`;
+}
+function tree(r,x,base,h,col,mode){
+  const w=h*.07;
+  let s=`<path d="M${x-w} ${base} L${x-w*.6} ${base-h*.6} L${x+w*.6} ${base-h*.6} L${x+w} ${base}Z" fill="${col}"/>`;
+  if(mode==='round'){for(let i=0;i<5;i++)s+=`<circle cx="${(x+(r()-.5)*h*.55).toFixed(1)}" cy="${(base-h*.72+(r()-.5)*h*.3).toFixed(1)}" r="${(h*(.15+r()*.1)).toFixed(1)}" fill="${col}"/>`}
+  else{const pts=[],n=10;for(let i=0;i<n;i++){const a=i/n*Math.PI*2,rr=h*(.26+r()*.14);pts.push([(x+Math.cos(a)*rr*1.3).toFixed(1),(base-h*.74+Math.sin(a)*rr*.8).toFixed(1)])}
+    s+=`<polygon points="${pts.map(p=>p.join(',')).join(' ')}" fill="${col}"/>`}
+  return s;
+}
+function pine(x,base,h,col,cap){
+  let s=`<rect x="${x-2}" y="${base-8}" width="4" height="8" fill="${col}"/>`;
+  for(let i=0;i<4;i++){const y=base-8-h*(i*.2),w=h*(.3-i*.055);s+=`<polygon points="${x-w},${y} ${x},${y-h*.42} ${x+w},${y}" fill="${col}"/>`;
+    if(cap)s+=`<polygon points="${x-w*.55},${y-h*.2} ${x},${y-h*.42} ${x+w*.55},${y-h*.2}" fill="${cap}" opacity=".85"/>`}
+  return s;
+}
+function bare(r,x,y,len,ang,d,col,sw,round){
+  if(d<=0||len<4)return'';
+  const x2=x+Math.cos(ang)*len,y2=y+Math.sin(ang)*len;
+  let s=`<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${col}" stroke-width="${sw}" ${round?'stroke-linecap="round"':''}/>`;
+  s+=bare(r,x2,y2,len*(.68+r()*.1),ang-.45-r()*.25,d-1,col,sw*.7,round);
+  s+=bare(r,x2,y2,len*(.68+r()*.1),ang+.45+r()*.25,d-1,col,sw*.7,round);
+  return s;
+}
+function flame(x,base,h,w,col,round){
+  return round?`<ellipse cx="${x}" cy="${base-h*.5}" rx="${w}" ry="${h*.55}" fill="${col}"/>`
+    :`<path d="M${x-w} ${base} Q${x-w*.7} ${base-h*.5} ${x-w*.1} ${base-h} Q${x+w*.2} ${base-h*.55} ${x+w*.55} ${base-h*.7} Q${x+w} ${base-h*.3} ${x+w} ${base}Z" fill="${col}"/>`;
+}
+
+/* Scenery: returns {defs, body} sized 960x400 */
+function scenery(style,st,u){
+  const p=PAL[style][st],r=rng(11+ST.indexOf(st)*13+style.charCodeAt(0));
+  const sharp=style==='A',round=style==='C',ink=style==='B';
+  let d=`<linearGradient id="sky${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.sky[0]}"/><stop offset="1" stop-color="${p.sky[1]}"/></linearGradient>
+<radialGradient id="gl${u}"><stop offset="0" stop-color="${p.glow}" stop-opacity=".95"/><stop offset="1" stop-color="${p.glow}" stop-opacity="0"/></radialGradient>
+<filter id="bl${u}"><feGaussianBlur stdDeviation="${round?3:2}"/></filter>`;
+  let b=`<rect width="960" height="400" fill="url(#sky${u})"/>`;
+  // stars
+  if(st!=='burning'&&!ink||st==='snow'){for(let i=0;i<46;i++)b+=`<circle cx="${(r()*960).toFixed(0)}" cy="${(r()*150).toFixed(0)}" r="${(r()*1.3+.4).toFixed(1)}" fill="#fff" opacity="${(r()*.6+.2).toFixed(2)}"/>`}
+  if(st==='forest'){
+    b+=`<circle cx="700" cy="250" r="150" fill="url(#gl${u})"/>`;
+    b+=ridge(r,290,50,p.far,round);
+    for(let x=20;x<980;x+=70)b+=tree(r,x+r()*30,312,110+r()*40,p.mid,round?'round':'sharp');
+    if(sharp)for(let i=0;i<4;i++)b+=`<polygon points="${520+i*70},0 ${590+i*70},0 ${360+i*70},330 ${300+i*70},330" fill="#fff" opacity=".05"/>`;
+    b+=tree(r,40,330,330,p.near,round?'round':'sharp')+tree(r,925,330,300,p.near,round?'round':'sharp');
+  }
+  if(st==='flood'){
+    b+=`<circle cx="500" cy="250" r="190" fill="url(#gl${u})" opacity=".8"/>`;
+    b+=ridge(r,268,40,p.far,round);
+    for(let i=0;i<28;i++)b+=`<rect x="${(r()*900+20).toFixed(0)}" y="${(244+r()*18).toFixed(0)}" width="${(10+r()*16).toFixed(0)}" height="${(14+r()*28).toFixed(0)}" fill="${p.mid}"/>`;
+    b+=`<rect y="270" width="960" height="130" fill="${p.water}"/><rect y="270" width="960" height="130" fill="url(#sky${u})" opacity=".55" transform="translate(0,670) scale(1,-1.2)"/>`;
+    for(let i=0;i<14;i++)b+=`<rect x="${(r()*900).toFixed(0)}" y="${(280+r()*80).toFixed(0)}" width="${(30+r()*70).toFixed(0)}" height="2" fill="#fff" opacity=".18"/>`;
+    for(const x of [90,250,610,860])b+=bare(r,x,296,50+r()*30,-Math.PI/2+(r()-.5)*.3,5,p.near,5,round);
+    b+=`<polygon points="380,300 420,262 470,300" fill="${p.near}"/><rect x="388" y="298" width="74" height="12" fill="${p.near}"/>`;
+    b+=`<rect y="318" width="960" height="82" fill="${p.near}"/>`;
+  }
+  if(st==='burning'){
+    b+=`<circle cx="480" cy="230" r="320" fill="url(#gl${u})" opacity=".9"/>`;
+    for(let x=0;x<960;x+=34){const h=60+r()*150,w=24+r()*22;b+=`<polygon points="${x},300 ${x},${300-h} ${x+w*.4},${300-h-(r()*14)} ${x+w},${300-h+(r()*10)} ${x+w},300" fill="${p.far}"/>`;
+      for(let k=0;k<3;k++)b+=`<rect x="${x+4+k*6}" y="${300-h+14+r()*(h-30)}" width="3" height="4" fill="${p.glow}" opacity=".9"/>`}
+    for(let x=10;x<960;x+=62)b+=flame(x+r()*20,300-r()*40,60+r()*90,18+r()*14,round?p.glow:'#ff6a1a',round);
+    for(let x=30;x<960;x+=90)b+=flame(x+r()*30,300,40+r()*50,12+r()*10,p.glow,round);
+    for(let i=0;i<5;i++)b+=`<ellipse cx="${(r()*900+30).toFixed(0)}" cy="${(30+r()*70).toFixed(0)}" rx="${(90+r()*80).toFixed(0)}" ry="${(24+r()*20).toFixed(0)}" fill="#000" opacity=".35" ${round?`filter="url(#bl${u})"`:''}/>`;
+    b+=ridge(r,320,26,p.mid,round);
+    for(let i=0;i<40;i++)b+=`<circle cx="${(r()*960).toFixed(0)}" cy="${(r()*300).toFixed(0)}" r="${(r()*1.6+.5).toFixed(1)}" fill="${p.glow}"/>`;
+    b+=`<rect y="318" width="960" height="82" fill="${p.near}"/>`;
+  }
+  if(st==='snow'){
+    b+=`<circle cx="780" cy="90" r="34" fill="#fff" opacity=".9"/><circle cx="780" cy="90" r="120" fill="url(#gl${u})" opacity=".35"/>`;
+    b+=ridge(r,250,90,p.far,round);
+    b+=ridge(r,300,40,p.mid,round);
+    for(let x=15;x<980;x+=55)b+=pine(x+r()*20,318,70+r()*50,p.near,round?'#e8f0fa':'#dfe8f2');
+    b+=`<rect y="312" width="960" height="88" fill="${p.near}"/>`;
+    for(let i=0;i<90;i++)b+=`<circle cx="${(r()*960).toFixed(0)}" cy="${(r()*400).toFixed(0)}" r="${(r()*2+.6).toFixed(1)}" fill="#fff" opacity="${(r()*.5+.4).toFixed(2)}"/>`;
+  }
+  if(st==='forest'){b+=`<rect y="318" width="960" height="82" fill="${p.near}"/>`;
+    if(round)for(let i=0;i<22;i++)b+=`<circle cx="${(r()*960).toFixed(0)}" cy="${(250+r()*70).toFixed(0)}" r="2.4" fill="#ffe9a0" opacity=".9" filter="url(#bl${u})"/>`}
+  if(ink)b+=`<rect width="960" height="400" filter="url(#gr${u})" opacity=".9"/>`;
+  if(ink)d+=`<filter id="gr${u}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .22 0"/></filter>`;
+  return{defs:d,body:b};
+}
+
+/* ================================================================
+   Figures
+================================================================ */
+const CAST=[
+  {n:'Fedora · camel coat',coat:'#b58b5a',hat:'fedora',hatc:'#6a4a2a',band:'#7a1f2a',skin:'#e6b894',len:1},
+  {n:'Cloche · plum coat',coat:'#5b2a55',hat:'cloche',hatc:'#3d1b3a',band:'#c9a24a',skin:'#f0c9a8',len:1},
+  {n:'Bowler · charcoal',coat:'#3a3d46',hat:'bowler',hatc:'#1d1d22',band:'#111',skin:'#cf9b76',len:.5},
+  {n:'Flat cap · forest',coat:'#2f5a43',hat:'flatcap',hatc:'#6a5a3a',band:'#000',skin:'#e0aa84',len:.4},
+  {n:'Wide brim · oxblood',coat:'#7a1f2a',hat:'wide',hatc:'#e8d9b5',band:'#7a1f2a',skin:'#f4d2b4',len:1},
+  {n:'Top hat · navy',coat:'#1f2f55',hat:'topper',hatc:'#15151c',band:'#c9a24a',skin:'#b98560',len:.8}
+];
+function hat(type,hy,hr,col,band,style){
+  const A=style==='A',B=style==='B',C=style==='C';
+  const k=B?'stroke="#1b1210" stroke-width="1.6" stroke-linejoin="round"':'';
+  const bc=A?DK:band;let s='';
+  const f=A?DK:col;
+  if(type==='fedora'){
+    s+=`<path d="M${-hr*.85} ${hy-hr*.5} Q${-hr*.9} ${hy-hr*1.8} 0 ${hy-hr*1.75} Q${hr*.9} ${hy-hr*1.8} ${hr*.85} ${hy-hr*.5}Z" fill="${f}" ${k}/>`;
+    if(!A)s+=`<rect x="${-hr*.85}" y="${hy-hr*.95}" width="${hr*1.7}" height="${hr*.3}" fill="${bc}"/>`;
+    s+=`<ellipse cx="0" cy="${hy-hr*.5}" rx="${hr*1.55}" ry="${hr*.3}" fill="${f}" ${k}/>`;
+  }
+  if(type==='cloche'){
+    s+=`<path d="M${-hr*1.1} ${hy+hr*.05} Q${-hr*1.15} ${hy-hr*1.8} 0 ${hy-hr*1.75} Q${hr*1.15} ${hy-hr*1.8} ${hr*1.1} ${hy+hr*.05} Q0 ${hy-hr*.45} ${-hr*1.1} ${hy+hr*.05}Z" fill="${f}" ${k}/>`;
+    if(!A)s+=`<path d="M${-hr*1.08} ${hy-hr*.3} Q0 ${hy-hr*.7} ${hr*1.08} ${hy-hr*.3}" fill="none" stroke="${bc}" stroke-width="${hr*.28}"/>`;
+  }
+  if(type==='bowler'){
+    s+=`<path d="M${-hr*.9} ${hy-hr*.5} Q${-hr*.9} ${hy-hr*1.75} 0 ${hy-hr*1.75} Q${hr*.9} ${hy-hr*1.75} ${hr*.9} ${hy-hr*.5}Z" fill="${f}" ${k}/>`;
+    s+=`<ellipse cx="0" cy="${hy-hr*.5}" rx="${hr*1.3}" ry="${hr*.22}" fill="${f}" ${k}/>`;
+  }
+  if(type==='flatcap'){
+    s+=`<ellipse cx="${hr*.1}" cy="${hy-hr*.85}" rx="${hr*1.15}" ry="${hr*.55}" fill="${f}" ${k}/><ellipse cx="${hr*1.1}" cy="${hy-hr*.55}" rx="${hr*.75}" ry="${hr*.18}" fill="${f}" ${k}/>`;
+  }
+  if(type==='wide'){
+    s+=`<path d="M${-hr*.8} ${hy-hr*.7} Q${-hr*.8} ${hy-hr*1.6} 0 ${hy-hr*1.6} Q${hr*.8} ${hy-hr*1.6} ${hr*.8} ${hy-hr*.7}Z" fill="${f}" ${k}/>`;
+    if(!A)s+=`<rect x="${-hr*.8}" y="${hy-hr*1.05}" width="${hr*1.6}" height="${hr*.25}" fill="${bc}"/>`;
+    s+=`<ellipse cx="0" cy="${hy-hr*.7}" rx="${hr*2.1}" ry="${hr*.4}" fill="${f}" ${k}/>`;
+  }
+  if(type==='topper'){
+    s+=`<rect x="${-hr*.75}" y="${hy-hr*3.1}" width="${hr*1.5}" height="${hr*2.45}" rx="${C?hr*.4:1}" fill="${f}" ${k}/>`;
+    if(!A)s+=`<rect x="${-hr*.75}" y="${hy-hr*1.1}" width="${hr*1.5}" height="${hr*.35}" fill="${bc}"/>`;
+    s+=`<ellipse cx="0" cy="${hy-hr*.65}" rx="${hr*1.4}" ry="${hr*.28}" fill="${f}" ${k}/>`;
+  }
+  return s;
+}
+function fig(style,x,y,o,sc=1){
+  const A=style==='A',B=style==='B',C=style==='C';
+  const coat=A?DK:o.coat,skin=A?DK:o.skin,leg=A?DK:(B?'#2a2430':'#5a4a62');
+  const k=B?'stroke="#1b1210" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"':'';
+  let s=`<g transform="translate(${x} ${y}) scale(${sc})">`;
+  if(!C){
+    const hem=-14-(1-o.len)*14,hr=6.5,hy=-55;
+    s+=`<rect x="-6" y="${hem}" width="4.5" height="${-hem}" fill="${leg}" ${k}/><rect x="1.5" y="${hem}" width="4.5" height="${-hem}" fill="${leg}" ${k}/>`;
+    s+=`<ellipse cx="-3.5" cy="-.5" rx="5" ry="2" fill="${A?DK:'#1b1210'}"/><ellipse cx="4" cy="-.5" rx="5" ry="2" fill="${A?DK:'#1b1210'}"/>`;
+    s+=`<path d="M-8.5 -47 Q0 -51 8.5 -47 L11.5 ${hem} L-11.5 ${hem}Z" fill="${coat}" ${k}/>`;
+    s+=`<path d="M-8.5 -46 L-13 ${-26} L-10 ${-25} L-7 -40Z M8.5 -46 L13 ${-26} L10 ${-25} L7 -40Z" fill="${coat}" ${k}/>`;
+    if(B){s+=`<path d="M-3 -48 L0 -36 L3 -48" fill="none" stroke="#1b1210" stroke-width="1.4"/><rect x="-1" y="-45" width="2" height="9" fill="#e8d9b5"/>`}
+    s+=`<rect x="-2" y="-51" width="4" height="5" fill="${skin}" ${k}/><circle cx="0" cy="${hy}" r="${hr}" fill="${skin}" ${k}/>`;
+    s+=hat(o.hat,hy,hr,o.hatc,o.band,style);
+  }else{
+    const hem=-8-(1-o.len)*7,hr=10,hy=-42;
+    s+=`<rect x="-6" y="-8" width="5" height="8" rx="2.5" fill="${leg}"/><rect x="1" y="-8" width="5" height="8" rx="2.5" fill="${leg}"/>`;
+    s+=`<rect x="-10" y="-34" width="20" height="${-hem+26}" rx="9" fill="${coat}"/>`;
+    s+=`<rect x="-13" y="-30" width="5" height="14" rx="2.5" fill="${coat}"/><rect x="8" y="-30" width="5" height="14" rx="2.5" fill="${coat}"/>`;
+    s+=`<rect x="-3" y="-33" width="6" height="5" fill="#ffffff55"/>`;
+    s+=`<circle cx="0" cy="${hy}" r="${hr}" fill="${skin}"/><circle cx="-3.6" cy="-41" r="1.3" fill="#3a2a2a"/><circle cx="3.6" cy="-41" r="1.3" fill="#3a2a2a"/><circle cx="-6" cy="-37.5" r="2" fill="#ff8a8a" opacity=".5"/><circle cx="6" cy="-37.5" r="2" fill="#ff8a8a" opacity=".5"/>`;
+    s+=hat(o.hat,hy,hr,o.hatc,o.band,style);
+  }
+  return s+'</g>';
+}
+
+/* ================================================================
+   Furniture
+================================================================ */
+function F(style){const A=style==='A',B=style==='B',C=style==='C';
+  return{A,B,C,k:B?'stroke="#1b1210" stroke-width="2" stroke-linejoin="round"':'',rx:A?0:C?5:2,
+    c:(col)=>A?DK:col}}
+function lamp(style,x,y,u){
+  const f=F(style);
+  return `<circle cx="${x}" cy="${y-62}" r="${f.A?58:52}" fill="url(#lg${u})" opacity="${f.A?.7:.85}"/>
+<rect x="${x-1.5}" y="${y-54}" width="3" height="54" fill="${f.c('#3a2a22')}"/>
+<ellipse cx="${x}" cy="${y-1}" rx="9" ry="2.5" fill="${f.c('#3a2a22')}"/>
+<polygon points="${x-11},${y-50} ${x+11},${y-50} ${x+7},${y-68} ${x-7},${y-68}" fill="${f.A?'#fff3c4':'#ffd98a'}" ${f.k}/>`;
+}
+function armchair(style,x,y,col,flip){
+  const f=F(style),d=flip?-1:1;
+  return `<g transform="translate(${x} ${y}) scale(${d} 1)">
+<rect x="0" y="-44" width="11" height="40" rx="${f.rx+2}" fill="${f.c(col)}" ${f.k}/>
+<rect x="0" y="-20" width="40" height="15" rx="${f.rx}" fill="${f.c(col)}" ${f.k}/>
+<rect x="26" y="-30" width="13" height="12" rx="${f.rx}" fill="${f.c(col)}" ${f.k}/>
+<rect x="3" y="-5" width="4" height="5" fill="${f.c('#3a2a22')}"/><rect x="33" y="-5" width="4" height="5" fill="${f.c('#3a2a22')}"/></g>`;
+}
+function table(style,x,y,w,u){
+  const f=F(style);
+  return `<rect x="${x+w/2-3}" y="${y-26}" width="6" height="26" fill="${f.c('#5a3a28')}" ${f.k}/>
+<rect x="${x}" y="${y-32}" width="${w}" height="6" rx="${f.rx}" fill="${f.c('#7a4a30')}" ${f.k}/>
+<ellipse cx="${x+w/2}" cy="${y-1}" rx="14" ry="2.5" fill="${f.c('#5a3a28')}"/>
+<rect x="${x+8}" y="${y-42}" width="7" height="10" fill="${f.A?DK:'#ffffffcc'}" ${f.k}/><rect x="${x+w-18}" y="${y-40}" width="7" height="8" fill="${f.A?DK:'#ffffffcc'}" ${f.k}/>`;
+}
+function bed(style,x,y,w){
+  const f=F(style);
+  return `<rect x="${x}" y="${y-36}" width="6" height="36" fill="${f.c('#5a3a28')}" ${f.k}/>
+<rect x="${x}" y="${y-14}" width="${w}" height="9" rx="${f.rx}" fill="${f.c('#5a3a28')}" ${f.k}/>
+<rect x="${x+4}" y="${y-24}" width="${w-6}" height="11" rx="${f.rx+2}" fill="${f.c('#e8e0d0')}" ${f.k}/>
+<rect x="${x+6}" y="${y-30}" width="22" height="8" rx="${f.rx+3}" fill="${f.c('#cfd8e8')}" ${f.k}/>
+<rect x="${x+w*.45}" y="${y-24}" width="${w*.5}" height="11" rx="${f.rx}" fill="${f.c('#7a1f2a')}" ${f.k}/>`;
+}
+function shelf(style,x,y){
+  const f=F(style),cs=['#7a1f2a','#2f5a43','#c9a24a','#1f2f55','#b58b5a'];
+  let s=`<rect x="${x}" y="${y-96}" width="36" height="96" rx="${f.rx}" fill="${f.c('#5a3a28')}" ${f.k}/>`;
+  for(let i=0;i<4;i++){const yy=y-92+i*23;s+=`<rect x="${x+3}" y="${yy+19}" width="30" height="2" fill="${f.c('#3a2418')}"/>`;
+    for(let j=0;j<5;j++)s+=`<rect x="${x+4+j*6}" y="${yy+5+(j%2)*2}" width="5" height="${14-(j%2)*2}" fill="${f.A?DK:cs[(i+j)%5]}"/>`}
+  return s;
+}
+function trunks(style,x,y){
+  const f=F(style);
+  return `<rect x="${x}" y="${y-26}" width="46" height="26" rx="${f.rx}" fill="${f.c('#8a5a38')}" ${f.k}/><rect x="${x}" y="${y-15}" width="46" height="3" fill="${f.A?DK:'#c9a24a'}"/>
+<rect x="${x+8}" y="${y-48}" width="32" height="22" rx="${f.rx}" fill="${f.c('#5a3a28')}" ${f.k}/><rect x="${x+16}" y="${y-62}" width="24" height="14" rx="${f.rx}" fill="${f.c('#7a4a30')}" ${f.k}/>`;
+}
+
+/* ================================================================
+   Hero train (cutaway)
+================================================================ */
+function hero(style,st){
+  const u=++UID,A=style==='A',B=style==='B',C=style==='C',f=F(style);
+  const sc=scenery(style,st,u);
+  const W=296,top=118,floor=270,xs=[20,328,636];
+  let d=sc.defs;
+  d+=`<radialGradient id="lg${u}"><stop offset="0" stop-color="#ffe6a0" stop-opacity=".95"/><stop offset=".45" stop-color="#ffc060" stop-opacity=".35"/><stop offset="1" stop-color="#ffb040" stop-opacity="0"/></radialGradient>
+<radialGradient id="vg${u}" cx=".5" cy=".5" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="${C?.55:.4}"/></radialGradient>
+<pattern id="pt${u}" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M7 0 L14 7 L7 14 L0 7Z" fill="none" stroke="#c9a24a" stroke-opacity=".28" stroke-width="1"/></pattern>
+<filter id="hb${u}"><feGaussianBlur stdDeviation="4"/></filter>`;
+  const roomA=['#f5a623','#ee5a3c','#2f7fa8'];
+  const wall=B?['#5a2a3a','#2f4a3c','#4a3050']:C?['#f4c9a0','#c6dcb8','#f0bcb4']:roomA;
+  const shell=A?DK:B?'#26332e':'#7a4a3a';
+  let b=`<use href="#scn${u}"/>`;
+  b+=`<rect y="308" width="960" height="4" fill="#000" opacity=".6"/>`;
+  xs.forEach((cx,i)=>{
+    // undercarriage + wheels
+    b+=`<rect x="${cx+10}" y="284" width="${W-20}" height="12" rx="${f.rx}" fill="${A?DK:B?'#3a2a22':'#4a3a4a'}" ${f.k}/>`;
+    [34,74,222,262].forEach(o=>b+=`<circle cx="${cx+o}" cy="300" r="11" fill="${A?DK:B?'#2a1f1a':'#3a3050'}" ${f.k}/>${A?'':`<circle cx="${cx+o}" cy="300" r="3.5" fill="${B?'#c9a24a':'#ffd9a0'}"/>`}`);
+    if(i<2)b+=`<rect x="${cx+W}" y="274" width="12" height="6" fill="${A?DK:'#3a2a22'}"/>`;
+    // shell + roof
+    b+=`<path d="M${cx} 288 L${cx} 130 Q${cx} ${top} ${cx+16} ${top} L${cx+W-16} ${top} Q${cx+W} ${top} ${cx+W} 130 L${cx+W} 288Z" fill="${shell}" ${f.k}/>`;
+    // interior
+    b+=`<rect x="${cx+9}" y="142" width="${W-18}" height="${floor-142}" fill="${wall[i]}" ${B?'stroke="#1b1210" stroke-width="2"':''}/>`;
+    if(B){b+=`<rect x="${cx+9}" y="142" width="${W-18}" height="${floor-142}" fill="url(#pt${u})"/>
+<rect x="${cx+9}" y="222" width="${W-18}" height="${floor-222}" fill="#00000040"/><line x1="${cx+9}" y1="222" x2="${cx+W-9}" y2="222" stroke="#c9a24a" stroke-width="2"/>
+<line x1="${cx+10}" y1="${top+8}" x2="${cx+W-10}" y2="${top+8}" stroke="#c9a24a" stroke-width="2"/>`}
+    if(C){b+=`<rect x="${cx+9}" y="222" width="${W-18}" height="${floor-222}" fill="#00000018"/>`}
+    if(A){b+=`<rect x="${cx+9}" y="142" width="${W-18}" height="${floor-142}" fill="#fff" opacity=".07"/><rect x="${cx+9}" y="142" width="${W-18}" height="40" fill="#fff" opacity=".12"/>
+<line x1="${cx+W/2}" y1="142" x2="${cx+W/2}" y2="${floor}" stroke="${DK}" stroke-width="3"/><line x1="${cx+9}" y1="205" x2="${cx+W-9}" y2="205" stroke="${DK}" stroke-width="2"/>`}
+    // windows showing scenery (B, C)
+    if(!A)[18,116,214].forEach((o,k)=>{
+      const wx=cx+o,wy=152,ww=64,wh=56,id=`cw${u}_${i}_${k}`;
+      d+=`<clipPath id="${id}"><rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" rx="${C?9:1}"/></clipPath>`;
+      b+=`<g clip-path="url(#${id})"><use href="#scn${u}"/><rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" fill="#00000022"/></g>`;
+      b+=`<rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" rx="${C?9:1}" fill="none" stroke="${B?'#1b1210':'#fff1d6'}" stroke-width="${B?3:4}"/>`;
+      if(B){b+=`<rect x="${wx-6}" y="${wy-5}" width="${ww+12}" height="3" fill="#c9a24a"/><path d="M${wx-2} ${wy-2} q8 24 -2 ${wh+2} h12 q-8 -${wh/2} 0 -${wh+2}Z M${wx+ww+2} ${wy-2} q-8 24 2 ${wh+2} h-12 q8 -${wh/2} 0 -${wh+2}Z" fill="#7a1f2a" stroke="#1b1210" stroke-width="1.5"/>`}
+      if(C)b+=`<line x1="${wx+ww/2}" y1="${wy}" x2="${wx+ww/2}" y2="${wy+wh}" stroke="#fff1d6" stroke-width="3"/>`;
+    });
+    // floor
+    b+=`<rect x="${cx+9}" y="${floor}" width="${W-18}" height="14" fill="${A?DK:B?'#7a1f2a':'#a0623c'}" ${B?'stroke="#1b1210" stroke-width="2"':''}/>`;
+    if(B)b+=`<line x1="${cx+9}" y1="${floor+5}" x2="${cx+W-9}" y2="${floor+5}" stroke="#c9a24a" stroke-width="1.5"/>`;
+    // roof decor
+    if(C)for(let k=0;k<9;k++)b+=`<circle cx="${cx+20+k*32}" cy="${top+20+Math.sin(k*1.4)*5}" r="3" fill="#ffe08a"/><circle cx="${cx+20+k*32}" cy="${top+20+Math.sin(k*1.4)*5}" r="9" fill="#ffe08a" opacity=".35" filter="url(#hb${u})"/>`;
+    if(B)b+=`<path d="M${cx+W/2-18} ${top+9} l18 14 l18 -14" fill="none" stroke="#c9a24a" stroke-width="2"/><path d="M${cx+W/2-12} ${top+9} l12 9 l12 -9" fill="none" stroke="#c9a24a" stroke-width="1.5"/>`;
+    // contents
+    const y=floor+1;
+    if(i===0){b+=bed(style,cx+14,y,100)+armchair(style,cx+236,y,'#7a1f2a',true)+lamp(style,cx+212,y,u);
+      b+=fig(style,cx+150,y,CAST[0])+fig(style,cx+180,y,CAST[1])}
+    if(i===1){b+=fig(style,cx+66,y-4,CAST[2])+table(style,cx+26,y,86,u)+fig(style,cx+196,y-4,CAST[3])+table(style,cx+156,y,86,u)+lamp(style,cx+130,y,u)+fig(style,cx+268,y,CAST[4])}
+    if(i===2){b+=shelf(style,cx+14,y)+armchair(style,cx+60,y,'#2f5a43')+fig(style,cx+130,y,CAST[5])+armchair(style,cx+190,y,'#c9a24a',true)+trunks(style,cx+236,y)+lamp(style,cx+170,y,u)}
+  });
+  // overlay
+  let ov='';
+  if(!A)ov+=`<rect width="960" height="400" fill="url(#vg${u})"/>`;
+  if(A)ov+=`<rect width="960" height="400" fill="url(#vg${u})"/>`;
+  if(C)for(let i=0;i<16;i++){const r=rng(i*77+3);ov+=`<circle cx="${(r()*900+30).toFixed(0)}" cy="${(r()*120+170).toFixed(0)}" r="2" fill="#ffe9a0" opacity=".9" filter="url(#hb${u})"/>`}
+  return `<svg viewBox="0 0 960 400" role="img" aria-label="Style ${style} cutaway train concept"><defs>${d}<g id="scn${u}">${sc.body}</g></defs>${b}${ov}</svg>`;
+}
+
+/* Station strip: train silhouette with lit windows against each scenery */
+function panel(style,st){
+  const u=++UID,A=style==='A',B=style==='B',C=style==='C',sc=scenery(style,st,u);
+  let b=`<use href="#scn${u}"/>`;
+  b+=`<rect y="308" width="960" height="4" fill="#000" opacity=".6"/>`;
+  const lit=st==='snow'?'#ffd98a':'#ffc060';
+  for(let c=-1;c<5;c++){const x=c*196+30;
+    b+=`<rect x="${x}" y="246" width="186" height="52" rx="${A?3:C?14:6}" fill="${A?DK:B?'#26332e':'#7a4a3a'}" ${B?'stroke="#1b1210" stroke-width="3"':''}/>`;
+    for(let k=0;k<4;k++){const wx=x+12+k*44;
+      b+=`<rect x="${wx}" y="258" width="32" height="22" rx="${C?8:1}" fill="${lit}" ${B?'stroke="#1b1210" stroke-width="2.5"':''}/>`;
+      if(C)b+=`<rect x="${wx-6}" y="252" width="44" height="34" rx="12" fill="${lit}" opacity=".35" filter="url(#hbp${u})"/>`;
+      if(k<3&&(c+k)%3!==1)b+=`<rect x="${wx+11}" y="${A?270:268}" width="10" height="12" fill="${A?DK:'#2a1f1a'}" ${A?'':'opacity=".85"'}/><circle cx="${wx+16}" cy="${A?268:266}" r="3.4" fill="${A?DK:'#2a1f1a'}"/>`}
+    [22,150].forEach(o=>b+=`<circle cx="${x+o}" cy="302" r="9" fill="${A?DK:'#2a1f1a'}"/>`);
+  }
+  const defs=`${sc.defs}<filter id="hbp${u}"><feGaussianBlur stdDeviation="5"/></filter>`;
+  return `<svg viewBox="0 0 960 400"><defs>${defs}<g id="scn${u}">${sc.body}</g></defs>${b}</svg>`;
+}
+
+function castRow(style){
+  const bg={A:'#16243f',B:'#2a1f1a',C:'#f2c595'}[style];
+  let s=`<svg viewBox="0 0 960 150" style="border-radius:10px"><rect width="960" height="150" fill="${bg}"/>`;
+  if(style==='A')s+=`<rect width="960" height="150" fill="#f5a62322"/>`;
+  CAST.forEach((c,i)=>{const x=80+i*160;
+    s+=fig(style,x,118,c,style==='C'?1.5:1.35);
+    s+=`<text x="${x}" y="144" text-anchor="middle" font-family="system-ui" font-size="11" fill="${style==='C'?'#6b4a3a':'#cfc8d8'}">${c.n}</text>`});
+  return s+'</svg>';
+}
+
+/* ================================================================
+   Page content
+================================================================ */
+const STYLES=[
+{k:'A',tag:'Style A',name:'Paper Lamplight',
+ pitch:'A paper-cut shadow-theatre train. Every carriage is a single glowing colour block, every person a flat silhouette told apart only by hat and coat. Scenery is stacked silhouette layers with one hot colour at the horizon. Inspired by the window-silhouette grid and the layered forest vector.',
+ sw:[['Night','#0b0d1a'],['Dusk indigo','#16243f'],['Lamp amber','#f5a623'],['Coral','#ee5a3c'],['Teal','#2f7fa8'],['Paper','#f3e3bf']],
+ ui:`<div class="ui uiA"><div class="ticketA"><div class="main"><small>CARRIAGE 2 · DINING CAR</small><h4>Who leaves at Station 3?</h4><span class="btnA">The Fedora</span><span class="btnA">The Cloche</span><span class="btnA hot">The Bowler ✓</span><span class="btnA">Abstain</span></div><div class="stub">ADMIT ONE</div></div></div>`,
+ pros:['Cheapest to produce: flat vector shapes, no per-frame painting','Parallax layers are trivial and scale cleanly in a browser','Silhouettes read instantly; hat and coat do all the identity work','Limited palette per station makes the story darkening obvious'],
+ cons:['Less "dollhouse detail" than the cutaway refs: props are only shapes','Faces and expressions are impossible; emotion must come from posture and UI','Risk of looking generic if the palette and shape language are not tuned'],
+ build:'Inline SVG or PixiJS; one gradient + 3 silhouette layers per station; figures = 6 hat variants × 3 coat lengths.'},
+{k:'B',tag:'Style B',name:'Inked Noir Deco',
+ pitch:'A hand-inked, cel-shaded cutaway. Heavy outlines, plum wallpaper, brass art-deco trim, oxblood carpet, curtains and window views. Figures wear full-colour 1930s coats. Paper-collage case-file UI like the social-deduction ref. This is the most faithful to the cutaway train illustrations.',
+ sw:[['Ink','#1b1210'],['Plum','#5a2a3a'],['Oxblood','#7a1f2a'],['Brass','#c9a24a'],['Bottle green','#2f5a43'],['Ticket cream','#e8d9b5']],
+ ui:`<div class="ui uiB"><div class="cardB"><div class="ph" style="background:radial-gradient(circle at 50% 70%,#b58b5a 0 14px,#1b1210 15px)"></div>THE FEDORA<span class="stamp">SUSPECT</span></div><div class="cardB"><div class="ph" style="background:radial-gradient(circle at 50% 70%,#5b2a55 0 14px,#1b1210 15px)"></div>THE CLOCHE</div><div class="cardB"><div class="ph" style="background:radial-gradient(circle at 50% 70%,#3a3d46 0 14px,#1b1210 15px)"></div>THE BOWLER</div><div class="noteB"><b>CLUE 3 / 7</b><br>Muddy shoes in Car 2.<br>Ticket stub, torn.<br><br><b>STATION 2 →</b> vote closes.</div></div>`,
+ pros:['Richest atmosphere and the closest match to your best references','Props (gramophone, globes, typewriter) can carry clues visually','Characters feel like real people with distinct 1930s wardrobes','Collage UI suits clue-hunting and accusations'],
+ cons:['Highest art cost; every prop needs outlining and shading','Detailed shapes fight with moving figures and parallax; harder to keep consistent','Dense interiors make it harder to spot who is where at a glance','Needs a real illustrator, or a lot of iteration to hold the style'],
+ build:'Pre-rendered PNG layers per carriage + sprite-sheet figures; scenery as painted parallax bands.'},
+{k:'C',tag:'Style C',name:'Cozy Diorama',
+ pitch:'A tilt-shift miniature. Rounded, soft-lit carriages with string lights, chunky chibi passengers, fireflies and a glowing cream UI like the cozy-game ref. It looks like a comfort game, so each station turning grim lands harder.',
+ sw:[['Dusk','#2d3a66'],['Glow','#f2a66b'],['Terracotta','#e8795a'],['Sage','#7fb08a'],['Cream','#fff1d6'],['Cocoa','#6b4a3a']],
+ ui:`<div class="ui uiC"><div class="panelC"><div class="hd">DINING VOTE</div><div class="rowC"><div class="chipC"><i style="background:#b58b5a"></i>Fedora</div><div class="chipC sel"><i style="background:#5b2a55"></i>Cloche</div><div class="chipC"><i style="background:#3a3d46"></i>Bowler</div></div><div class="btnC">Cast vote</div></div></div>`,
+ pros:['Most approachable for friends; friendly even to people who rarely play games','Chibi proportions leave room for faces and small expressions','Soft glow and fireflies make a gorgeous lit train','Cosy-to-dread contrast gives a strong emotional arc'],
+ cons:['Can undercut the tension unless stations 3 and 4 are dramatically harsher','Rounded cute look may not suit a murder-mystery mood on its own','Needs soft lighting and blur effects, so it is heavier to render','Furthest from the noir/art-deco wording in your references'],
+ build:'Canvas/PixiJS with blur and glow filters; figures as rounded sprites; lighting by additive radial gradients.'}
+];
+
+const root=document.getElementById('styles');
+STYLES.forEach(S=>{
+  root.insertAdjacentHTML('beforeend',`
+<section class="style">
+  <div class="tag">${S.tag}</div>
+  <h2>${S.name}</h2>
+  <p class="pitch">${S.pitch}</p>
+  <div class="hero">${hero(S.k,'forest')}</div>
+  <h3>Scenery shifts by station</h3>
+  <div class="strip">${ST.map(s=>`<figure>${panel(S.k,s)}<figcaption>${LBL[s]}</figcaption></figure>`).join('')}</div>
+  <div class="two">
+    <div><h3>Palette</h3><div class="swatches">${S.sw.map(c=>`<div class="sw"><i style="background:${c[1]}"></i>${c[0]}<br>${c[1]}</div>`).join('')}</div>
+      <h3>Passengers</h3><div class="cast">${castRow(S.k)}</div></div>
+    <div><h3>Interface feel</h3>${S.ui}<p style="color:var(--mute);font-size:13px;margin-top:10px"><b>Build notes:</b> ${S.build}</p></div>
+  </div>
+  <h3>Trade-offs</h3>
+  <div class="pc"><div class="pro"><b>Strengths</b><ul>${S.pros.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="con"><b>Weaknesses</b><ul>${S.cons.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>
+</section>`);
+});
+</script>
+</body>
+</html>

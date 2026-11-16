@@ -1,0 +1,30 @@
+{
+  "name": "the-last-train",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Last Train: a browser social-deduction game on a night train. v1 is a friends playtest.",
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c yellow,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
+    "dev:fast": "cross-env TIME_SCALE=0.2 npm run dev",
+    "build": "npm run build -w client",
+    "start": "npm run start -w server",
+    "play": "npm run build && npm run start",
+    "test": "npm run test -w server",
+    "typecheck": "npm run typecheck -w shared && npm run typecheck -w server && npm run typecheck -w client",
+    "validate:story": "npm run validate:story -w server",
+    "bots": "npm run bots -w server --"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "cross-env": "^7.0.3",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
