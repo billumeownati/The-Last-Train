@@ -67,7 +67,7 @@ Commands below assume **Ubuntu** (22.04 or 24.04). Replace `YOUR-USER/the-last-t
 
 * Shape: the free **AMD micro** (`VM.Standard.E2.1.Micro`, 1 GB). If your account can get an **Ampere A1 (ARM)** shape, it has far more room, but free capacity for it is often unavailable.
 * Image: Ubuntu. Add your SSH key. Note the **public IP**.
-* If you will use a domain with Caddy (step 6a): in the VM's subnet **Security List** (Networking → Virtual Cloud Networks → your VCN → subnet → Security Lists) add **Ingress Rules** for TCP **80** and **443** from `0.0.0.0/0`.
+* If you will use your subdomain with Caddy (step 6a): in the VM's subnet **Security List** (Networking → Virtual Cloud Networks → your VCN → subnet → Security Lists) add **Ingress Rules** for TCP **80** and **443** from `0.0.0.0/0`.
   If you will use a Cloudflare tunnel (step 6b), you can skip this: the tunnel makes an outbound connection only.
 
 ### 2. Install Node, git and swap
@@ -138,30 +138,34 @@ ps -o rss,cmd -C node          # RSS is in KB; expect roughly 70,000 to 150,000 
 
 ### 6. https (microphones need it): pick one
 
-**6a. A domain with Caddy** (automatic certificates, handles WebSockets for you).
-Point a hostname at the VM's public IP first (a free DuckDNS name works: create `yourname.duckdns.org` with your IP).
+**6a. Your own subdomain with Caddy** (automatic certificates, handles WebSockets for you). This guide uses `lasttrain.debz.in`; any subdomain you control works the same way.
 
-```bash
-sudo apt-get install -y debian-keyring debian-archive-keyring apt-transport-https curl
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
-sudo apt-get update && sudo apt-get install -y caddy
+1. **Point the subdomain at the VM.** In your DNS provider add an **A record**: name `lasttrain` (so it becomes `lasttrain.debz.in`), value = the VM's public IP. If the DNS is on Cloudflare, set the record to **DNS only** (grey cloud) so Caddy can get its certificate directly; you can switch to proxied later if you want to (then set Cloudflare's SSL mode to *Full (strict)*).
+   Check it has propagated before the next step: `nslookup lasttrain.debz.in` should print the VM's IP.
+2. **Open ports 80 and 443** in two places (step 1 did the cloud Security List). Oracle's Ubuntu images also block ports inside the VM:
 
-echo 'yourname.duckdns.org {
-    reverse_proxy 127.0.0.1:3000
-}' | sudo tee /etc/caddy/Caddyfile
-sudo systemctl reload caddy
-```
+   ```bash
+   sudo iptables -I INPUT 1 -m state --state NEW -p tcp --dport 80  -j ACCEPT
+   sudo iptables -I INPUT 1 -m state --state NEW -p tcp --dport 443 -j ACCEPT
+   sudo netfilter-persistent save     # if missing: sudo apt-get install -y iptables-persistent
+   ```
 
-Oracle's Ubuntu images also block ports inside the VM, so open 80 and 443 there too (the cloud Security List from step 1 is not enough):
+3. **Install and configure Caddy.** Caddy needs port 80 reachable to obtain and renew the certificate.
 
-```bash
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80  -j ACCEPT
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 443 -j ACCEPT
-sudo netfilter-persistent save     # if missing: sudo apt-get install -y iptables-persistent
-```
+   ```bash
+   sudo apt-get install -y debian-keyring debian-archive-keyring apt-transport-https curl
+   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+   sudo apt-get update && sudo apt-get install -y caddy
 
-Then open `https://yourname.duckdns.org`.
+   echo 'lasttrain.debz.in {
+       reverse_proxy 127.0.0.1:3000
+   }' | sudo tee /etc/caddy/Caddyfile
+   sudo systemctl reload caddy
+   sudo journalctl -u caddy -n 30 --no-pager     # look for "certificate obtained successfully"
+   ```
+
+4. **Open `https://lasttrain.debz.in`** and `https://lasttrain.debz.in/healthz`. If the certificate fails: DNS has not propagated yet, or port 80 is still blocked (re-check both firewalls), or the Cloudflare record is proxied while SSL mode is wrong.
 
 **6b. A Cloudflare tunnel** (no domain, no open ports).
 Install `cloudflared` from Cloudflare's downloads page for your CPU (amd64 for the micro shape, arm64 for Ampere), then:
